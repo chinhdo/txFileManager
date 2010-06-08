@@ -1,6 +1,0 @@
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\bin\Debug\ChinhDo.Transactions.dll
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\bin\Debug\ChinhDo.Transactions.pdb
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\obj\Debug\ResolveAssemblyReference.cache
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\obj\Debug\ChinhDo.Transactions.dll
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\obj\Debug\ChinhDo.Transactions.pdb
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManager\bin\Debug\ChinhDo.Transactions.XML

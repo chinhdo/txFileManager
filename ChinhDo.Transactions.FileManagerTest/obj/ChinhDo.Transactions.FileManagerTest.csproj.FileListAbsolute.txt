@@ -1,8 +1,0 @@
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.pdb
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.dll
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.pdb
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.xml
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ResolveAssemblyReference.cache
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ChinhDo.Transactions.FileManagerTest.dll
-Q:\Cdo\Versioned\Dev\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ChinhDo.Transactions.FileManagerTest.pdb
