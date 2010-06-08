@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="e0edc099-dd3d-4075-b98e-6937cab85fef" name="Cdo@CDOVPC01 2010-06-08 16:42:40" runUser="CDOVPC01\Cdo" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Local Test Run" id="a8a2e672-9ca4-4527-a674-628eb5bad686">
+    <Description>This is a default test run configuration for a local test run.</Description>
+    <Timeouts testTimeout="300000" />
+    <Deployment runDeploymentRoot="C:\Cdo\CodePlex\TxFileManager\TestResults\Cdo_CDOVPC01 2010-06-08 16_42_40">
+      <DeploymentItem filename="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManager\bin\Debug\ChinhDo.Transactions.dll" />
+    </Deployment>
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2010-06-08T16:42:40.8039792-04:00" queuing="2010-06-08T16:42:41.0343104-04:00" start="2010-06-08T16:42:41.1344544-04:00" finish="2010-06-08T16:42:41.9155776-04:00" />
+  <TestDefinitions>
+    <UnitTest name="CanHandleCopyErrors" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="6fecc392-c30e-5f7b-3615-b4cfe7262b04">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="2cae7c6b-e3aa-4577-b74a-f049322c5fd0" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanHandleCopyErrors" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="6fecc392-c30e-5f7b-3615-b4cfe7262b04" executionId="2cae7c6b-e3aa-4577-b74a-f049322c5fd0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="2cae7c6b-e3aa-4577-b74a-f049322c5fd0" testId="6fecc392-c30e-5f7b-3615-b4cfe7262b04" testName="CanHandleCopyErrors" computerName="CDOVPC01" duration="00:00:00.0379386" startTime="2010-06-08T16:42:41.2446128-04:00" endTime="2010-06-08T16:42:41.8354624-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ChinhDo.Transactions.FileManagerTest.FileManagerTest.CanHandleCopyErrors threw exception:  System.IO.IOException: The process cannot access the file 'C:\Documents and Settings\Chinh Do\Local Settings\Temp\CdFileMgr\-61a63751.tmp' because it is being used by another process..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite)
+   at System.IO.File.Copy(String sourceFileName, String destFileName)
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.RollbackFile..ctor(String fileName) in C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManager\TxEnlistment.cs:line 261
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.Copy(String sourceFileName, String destFileName, Boolean overwrite) in C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManager\TxEnlistment.cs:line 73
+   at ChinhDo.Transactions.TxFileManager.Copy(String sourceFileName, String destFileName, Boolean overwrite) in C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManager\TxFileManager.cs:line 66
+   at ChinhDo.Transactions.FileManagerTest.FileManagerTest.CanHandleCopyErrors() in C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\FileManagerTest.cs:line 355
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

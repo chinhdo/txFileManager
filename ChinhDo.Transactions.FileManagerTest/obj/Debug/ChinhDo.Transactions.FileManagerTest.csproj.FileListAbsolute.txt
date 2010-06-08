@@ -1,0 +1,8 @@
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.pdb
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.dll
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.pdb
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.xml
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ChinhDo.Transactions.FileManagerTest.dll
+C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\obj\Debug\ChinhDo.Transactions.FileManagerTest.pdb

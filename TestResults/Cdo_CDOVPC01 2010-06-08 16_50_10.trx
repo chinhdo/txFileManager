@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="db1bac22-bb02-4b02-bdb8-086696ecf000" name="Cdo@CDOVPC01 2010-06-08 16:50:10" runUser="CDOVPC01\Cdo" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Local Test Run" id="a8a2e672-9ca4-4527-a674-628eb5bad686">
+    <Description>This is a default test run configuration for a local test run.</Description>
+    <Timeouts testTimeout="300000" />
+    <Deployment runDeploymentRoot="C:\Cdo\CodePlex\TxFileManager\TestResults\Cdo_CDOVPC01 2010-06-08 16_50_10">
+      <DeploymentItem filename="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManager\bin\Debug\ChinhDo.Transactions.dll" />
+    </Deployment>
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="Completed">
+    <Counters total="20" executed="20" passed="20" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2010-06-08T16:50:10.2802944-04:00" queuing="2010-06-08T16:50:10.7810144-04:00" start="2010-06-08T16:50:10.9112016-04:00" finish="2010-06-08T16:50:12.3232320-04:00" />
+  <TestDefinitions>
+    <UnitTest name="CanCreateDirectoryAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="fe5b79e7-9bd7-536d-3767-abaaa615374d">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="9e905a7e-a8a6-457d-b14e-ecc0e6ff0023" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanCreateDirectoryAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanNestTransactions" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="72f2f819-10c1-d5dc-4916-1e29925832eb">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="de042723-db11-4fd0-ab05-909ee9e7cec7" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanNestTransactions" />
+    </UnitTest>
+    <UnitTest name="CannotRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="6c1f1fc7-c3d8-66ef-8a35-f62bf9786a9b">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="353e4d37-755a-4846-a07f-eb10868c25d0" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CannotRollback" />
+    </UnitTest>
+    <UnitTest name="CanReuseManager" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="c2aaf1a3-cdf2-a67e-9e79-74a46ecfdc37">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="15aa4d8f-cbdb-4000-8946-7d70dc85ecc7" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanReuseManager" />
+    </UnitTest>
+    <UnitTest name="CanCreateDirectory" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="fca7f287-37ab-25c7-6968-aa30f91c14a9">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="823e0c4d-e2fc-4710-bb0c-ceb083b64d40" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanCreateDirectory" />
+    </UnitTest>
+    <UnitTest name="CanMoveFile" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="5ab28f5f-b988-8f56-a50e-a40e7807e4d9">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="3cbb98fa-c0ca-41e5-82ac-e9795fecc86b" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanMoveFile" />
+    </UnitTest>
+    <UnitTest name="CannotAppendText" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="dcd77c74-8e1c-4d30-6d5b-a1e5b47c5ef8">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="b52e43c0-3264-4679-a986-fbd70fe3d3ae" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CannotAppendText" />
+    </UnitTest>
+    <UnitTest name="CanWriteAllTextAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="524ba5e4-ee2e-caa0-b515-ca43807b7d4e">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="4fa3ca31-2815-4d50-94ef-48a3c0b70d78" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanWriteAllTextAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanCopy" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="2006797b-96f3-b8d2-e69b-5b738a9e0ce3">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="4edb3136-0da1-4274-8481-04c9ac377735" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanCopy" />
+    </UnitTest>
+    <UnitTest name="CanHandleCopyErrors" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="6fecc392-c30e-5f7b-3615-b4cfe7262b04">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="0b1ab34b-9fd1-4697-9354-cb1e42431d68" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanHandleCopyErrors" />
+    </UnitTest>
+    <UnitTest name="CanSupportTransactionScopeOptionSuppress" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="bd6b40d8-311c-7954-771d-ba41d4659ca0">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="411399d6-8df1-4159-b443-56f1ae5b66ec" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanSupportTransactionScopeOptionSuppress" />
+    </UnitTest>
+    <UnitTest name="CanDeleteFile" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="fb8ab088-327e-38c3-a6a0-f97d5c6d7056">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="e6d123f6-22e0-4816-8c90-0187227d80bc" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanDeleteFile" />
+    </UnitTest>
+    <UnitTest name="CanMoveFileAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="05ad9006-51b8-6711-5ba1-dec35d99a4e9">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="5db30d41-724a-44b9-a575-c7674fe5ace7" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanMoveFileAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanCopyAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="28be67ad-27a6-95a1-3896-cfe7b42cec04">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="d5b24c47-9c68-452f-87a2-c236f1b5fa8b" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanCopyAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanDeleteFileAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="0493ba1c-4c88-2e44-3275-cffb9f7bb64b">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="9d069398-4ab0-4bfa-ace2-cf2f683e21ae" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanDeleteFileAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanAppendTextAndRollback" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="3e1e7c49-fea8-dda1-0ccf-8ccd72bfe782">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="cfe1af55-b4ea-4ed1-a5e2-8bba48ff47c2" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanAppendTextAndRollback" />
+    </UnitTest>
+    <UnitTest name="CanSnapshot" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="b1e9be15-025d-8f9c-5e70-820dc988c1d4">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="1ba03c54-401f-42ba-85ce-f3faebec1359" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanSnapshot" />
+    </UnitTest>
+    <UnitTest name="CanAppendText" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="8527ade4-4fe8-d67a-1141-2972dd56c9e2">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="69448b3c-f5d9-4f01-b082-8231652cecd6" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanAppendText" />
+    </UnitTest>
+    <UnitTest name="CanWriteAllText" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="129808c8-4b22-abc8-b07d-fa5da4757c17">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="d88f1af8-6ee9-4e34-a741-bbf785ec297b" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanWriteAllText" />
+    </UnitTest>
+    <UnitTest name="CanDoMultiThread" storage="c:\cdo\codeplex\txfilemanager\chinhdo.transactions.filemanagertest\bin\debug\chinhdo.transactions.filemanagertest.dll" id="102b97ad-ca70-792c-e4bd-f8d57299bc4c">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="4f0ff39b-afde-410b-9c8a-ff96f40c1fd2" />
+      <TestMethod codeBase="C:\Cdo\CodePlex\TxFileManager\ChinhDo.Transactions.FileManagerTest\bin\Debug\ChinhDo.Transactions.FileManagerTest.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ChinhDo.Transactions.FileManagerTest.FileManagerTest, ChinhDo.Transactions.FileManagerTest" name="CanDoMultiThread" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0493ba1c-4c88-2e44-3275-cffb9f7bb64b" executionId="9d069398-4ab0-4bfa-ace2-cf2f683e21ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="05ad9006-51b8-6711-5ba1-dec35d99a4e9" executionId="5db30d41-724a-44b9-a575-c7674fe5ace7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="102b97ad-ca70-792c-e4bd-f8d57299bc4c" executionId="4f0ff39b-afde-410b-9c8a-ff96f40c1fd2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="129808c8-4b22-abc8-b07d-fa5da4757c17" executionId="d88f1af8-6ee9-4e34-a741-bbf785ec297b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2006797b-96f3-b8d2-e69b-5b738a9e0ce3" executionId="4edb3136-0da1-4274-8481-04c9ac377735" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="28be67ad-27a6-95a1-3896-cfe7b42cec04" executionId="d5b24c47-9c68-452f-87a2-c236f1b5fa8b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3e1e7c49-fea8-dda1-0ccf-8ccd72bfe782" executionId="cfe1af55-b4ea-4ed1-a5e2-8bba48ff47c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="524ba5e4-ee2e-caa0-b515-ca43807b7d4e" executionId="4fa3ca31-2815-4d50-94ef-48a3c0b70d78" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ab28f5f-b988-8f56-a50e-a40e7807e4d9" executionId="3cbb98fa-c0ca-41e5-82ac-e9795fecc86b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c1f1fc7-c3d8-66ef-8a35-f62bf9786a9b" executionId="353e4d37-755a-4846-a07f-eb10868c25d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6fecc392-c30e-5f7b-3615-b4cfe7262b04" executionId="0b1ab34b-9fd1-4697-9354-cb1e42431d68" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="72f2f819-10c1-d5dc-4916-1e29925832eb" executionId="de042723-db11-4fd0-ab05-909ee9e7cec7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8527ade4-4fe8-d67a-1141-2972dd56c9e2" executionId="69448b3c-f5d9-4f01-b082-8231652cecd6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b1e9be15-025d-8f9c-5e70-820dc988c1d4" executionId="1ba03c54-401f-42ba-85ce-f3faebec1359" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bd6b40d8-311c-7954-771d-ba41d4659ca0" executionId="411399d6-8df1-4159-b443-56f1ae5b66ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c2aaf1a3-cdf2-a67e-9e79-74a46ecfdc37" executionId="15aa4d8f-cbdb-4000-8946-7d70dc85ecc7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dcd77c74-8e1c-4d30-6d5b-a1e5b47c5ef8" executionId="b52e43c0-3264-4679-a986-fbd70fe3d3ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb8ab088-327e-38c3-a6a0-f97d5c6d7056" executionId="e6d123f6-22e0-4816-8c90-0187227d80bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fca7f287-37ab-25c7-6968-aa30f91c14a9" executionId="823e0c4d-e2fc-4710-bb0c-ceb083b64d40" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe5b79e7-9bd7-536d-3767-abaaa615374d" executionId="9e905a7e-a8a6-457d-b14e-ecc0e6ff0023" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="9d069398-4ab0-4bfa-ace2-cf2f683e21ae" testId="0493ba1c-4c88-2e44-3275-cffb9f7bb64b" testName="CanDeleteFileAndRollback" computerName="CDOVPC01" duration="00:00:00.0596888" startTime="2010-06-08T16:50:11.0113456-04:00" endTime="2010-06-08T16:50:11.8525552-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5db30d41-724a-44b9-a575-c7674fe5ace7" testId="05ad9006-51b8-6711-5ba1-dec35d99a4e9" testName="CanMoveFileAndRollback" computerName="CDOVPC01" duration="00:00:00.0047324" startTime="2010-06-08T16:50:11.8525552-04:00" endTime="2010-06-08T16:50:11.8625696-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4f0ff39b-afde-410b-9c8a-ff96f40c1fd2" testId="102b97ad-ca70-792c-e4bd-f8d57299bc4c" testName="CanDoMultiThread" computerName="CDOVPC01" duration="00:00:00.2181310" startTime="2010-06-08T16:50:11.8725840-04:00" endTime="2010-06-08T16:50:12.0929008-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d88f1af8-6ee9-4e34-a741-bbf785ec297b" testId="129808c8-4b22-abc8-b07d-fa5da4757c17" testName="CanWriteAllText" computerName="CDOVPC01" duration="00:00:00.0022676" startTime="2010-06-08T16:50:12.0929008-04:00" endTime="2010-06-08T16:50:12.1129296-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4edb3136-0da1-4274-8481-04c9ac377735" testId="2006797b-96f3-b8d2-e69b-5b738a9e0ce3" testName="CanCopy" computerName="CDOVPC01" duration="00:00:00.0020111" startTime="2010-06-08T16:50:12.1129296-04:00" endTime="2010-06-08T16:50:12.1229440-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d5b24c47-9c68-452f-87a2-c236f1b5fa8b" testId="28be67ad-27a6-95a1-3896-cfe7b42cec04" testName="CanCopyAndRollback" computerName="CDOVPC01" duration="00:00:00.0018787" startTime="2010-06-08T16:50:12.1229440-04:00" endTime="2010-06-08T16:50:12.1329584-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="cfe1af55-b4ea-4ed1-a5e2-8bba48ff47c2" testId="3e1e7c49-fea8-dda1-0ccf-8ccd72bfe782" testName="CanAppendTextAndRollback" computerName="CDOVPC01" duration="00:00:00.0014099" startTime="2010-06-08T16:50:12.1329584-04:00" endTime="2010-06-08T16:50:12.1329584-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4fa3ca31-2815-4d50-94ef-48a3c0b70d78" testId="524ba5e4-ee2e-caa0-b515-ca43807b7d4e" testName="CanWriteAllTextAndRollback" computerName="CDOVPC01" duration="00:00:00.0023494" startTime="2010-06-08T16:50:12.1429728-04:00" endTime="2010-06-08T16:50:12.1429728-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3cbb98fa-c0ca-41e5-82ac-e9795fecc86b" testId="5ab28f5f-b988-8f56-a50e-a40e7807e4d9" testName="CanMoveFile" computerName="CDOVPC01" duration="00:00:00.0022768" startTime="2010-06-08T16:50:12.1429728-04:00" endTime="2010-06-08T16:50:12.1529872-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="353e4d37-755a-4846-a07f-eb10868c25d0" testId="6c1f1fc7-c3d8-66ef-8a35-f62bf9786a9b" testName="CannotRollback" computerName="CDOVPC01" duration="00:00:00.0078892" startTime="2010-06-08T16:50:12.1529872-04:00" endTime="2010-06-08T16:50:12.1630016-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0b1ab34b-9fd1-4697-9354-cb1e42431d68" testId="6fecc392-c30e-5f7b-3615-b4cfe7262b04" testName="CanHandleCopyErrors" computerName="CDOVPC01" duration="00:00:00.0023849" startTime="2010-06-08T16:50:12.1730160-04:00" endTime="2010-06-08T16:50:12.1730160-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="de042723-db11-4fd0-ab05-909ee9e7cec7" testId="72f2f819-10c1-d5dc-4916-1e29925832eb" testName="CanNestTransactions" computerName="CDOVPC01" duration="00:00:00.0036524" startTime="2010-06-08T16:50:12.1830304-04:00" endTime="2010-06-08T16:50:12.1830304-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="69448b3c-f5d9-4f01-b082-8231652cecd6" testId="8527ade4-4fe8-d67a-1141-2972dd56c9e2" testName="CanAppendText" computerName="CDOVPC01" duration="00:00:00.0019541" startTime="2010-06-08T16:50:12.1930448-04:00" endTime="2010-06-08T16:50:12.1930448-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1ba03c54-401f-42ba-85ce-f3faebec1359" testId="b1e9be15-025d-8f9c-5e70-820dc988c1d4" testName="CanSnapshot" computerName="CDOVPC01" duration="00:00:00.0017390" startTime="2010-06-08T16:50:12.1930448-04:00" endTime="2010-06-08T16:50:12.2030592-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="411399d6-8df1-4159-b443-56f1ae5b66ec" testId="bd6b40d8-311c-7954-771d-ba41d4659ca0" testName="CanSupportTransactionScopeOptionSuppress" computerName="CDOVPC01" duration="00:00:00.0019505" startTime="2010-06-08T16:50:12.2030592-04:00" endTime="2010-06-08T16:50:12.2130736-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="15aa4d8f-cbdb-4000-8946-7d70dc85ecc7" testId="c2aaf1a3-cdf2-a67e-9e79-74a46ecfdc37" testName="CanReuseManager" computerName="CDOVPC01" duration="00:00:00.0030473" startTime="2010-06-08T16:50:12.2130736-04:00" endTime="2010-06-08T16:50:12.2230880-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b52e43c0-3264-4679-a986-fbd70fe3d3ae" testId="dcd77c74-8e1c-4d30-6d5b-a1e5b47c5ef8" testName="CannotAppendText" computerName="CDOVPC01" duration="00:00:00.0051115" startTime="2010-06-08T16:50:12.2230880-04:00" endTime="2010-06-08T16:50:12.2331024-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e6d123f6-22e0-4816-8c90-0187227d80bc" testId="fb8ab088-327e-38c3-a6a0-f97d5c6d7056" testName="CanDeleteFile" computerName="CDOVPC01" duration="00:00:00.0019513" startTime="2010-06-08T16:50:12.2431168-04:00" endTime="2010-06-08T16:50:12.2431168-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="823e0c4d-e2fc-4710-bb0c-ceb083b64d40" testId="fca7f287-37ab-25c7-6968-aa30f91c14a9" testName="CanCreateDirectory" computerName="CDOVPC01" duration="00:00:00.0013730" startTime="2010-06-08T16:50:12.2431168-04:00" endTime="2010-06-08T16:50:12.2531312-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9e905a7e-a8a6-457d-b14e-ecc0e6ff0023" testId="fe5b79e7-9bd7-536d-3767-abaaa615374d" testName="CanCreateDirectoryAndRollback" computerName="CDOVPC01" duration="00:00:00.0014418" startTime="2010-06-08T16:50:12.2531312-04:00" endTime="2010-06-08T16:50:12.2631456-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
