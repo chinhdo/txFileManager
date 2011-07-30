@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security;
+using System.Security.Permissions;
+using System.Text.RegularExpressions;
 using System.Transactions;
 
 namespace ChinhDo.Transactions
 {
     public partial class TxFileManager
     {        
-        /// <summary>
-        /// Provides two-phase commits/rollbacks/etc for a single <see cref="Transaction"/>.
-        /// </summary>
+        /// <summary>Provides two-phase commits/rollbacks/etc for a single <see cref="Transaction"/>.</summary>
         private class TxEnlistment : IEnlistmentNotification, IFileOperations
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="TxEnlistment"/> class.
-            /// </summary>
+            /// <summary>Initializes a new instance of the <see cref="TxEnlistment"/> class.</summary>
             public TxEnlistment()
                 : this(null)
             {
 
             }
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="TxEnlistment"/> class.
-            /// </summary>
+            /// <summary>Initializes a new instance of the <see cref="TxEnlistment"/> class.</summary>
             /// <param name="tx">The Transaction.</param>
             public TxEnlistment(Transaction tx)
             {
@@ -33,9 +30,7 @@ namespace ChinhDo.Transactions
                 _journal = new List<RollbackOperation>();
             }
 
-            /// <summary>
-            /// Gets or sets a value indicating whether to ignore exceptions during Rollback.
-            /// </summary>
+            /// <summary>Gets or sets a value indicating whether to ignore exceptions during Rollback.</summary>
             public bool IgnoreExceptionsInRollback
             {
                 get { return _ignoreExceptionsInRollback; }
@@ -44,9 +39,7 @@ namespace ChinhDo.Transactions
 
             #region IFileOperations
 
-            /// <summary>
-            /// Appends the specified string the file, creating the file if it doesn't already exist.
-            /// </summary>
+            /// <summary>Appends the specified string the file, creating the file if it doesn't already exist.</summary>
             /// <param name="path">The file to append the string to.</param>
             /// <param name="contents">The string to append to the file.</param>
             public void AppendAllText(string path, string contents)
@@ -69,9 +62,7 @@ namespace ChinhDo.Transactions
                 }
             }
 
-            /// <summary>
-            /// Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.
-            /// </summary>
+            /// <summary>Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.</summary>
             /// <param name="sourceFileName">The file to copy.</param>
             /// <param name="destFileName">The name of the destination file.</param>
             /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
@@ -94,32 +85,57 @@ namespace ChinhDo.Transactions
                 }
             }
 
-            /// <summary>
-            /// Creates all directories in the specified path.
-            /// </summary>
-            /// <param name="path">The directory path to create.</param>
-            public void CreateDirectory(string path)
-            {
-                var r = new RollbackDirectory(path);
-                try
-                {
-                    Directory.CreateDirectory(path);
-                }
-                catch (Exception e)
-                {
-                    r.CleanUp();
-                    throw new Exception(e.Message, e);
-                }
-                if (_tx != null)
-                {
-                    _journal.Add(r);
-                    Enlist();
-                }
-            }
+			private static readonly Regex _rgxCleanPath = new Regex("[" + Path.DirectorySeparatorChar + Path.AltDirectorySeparatorChar + "]{2,}", RegexOptions.Compiled);
 
-            /// <summary>
-            /// Deletes the specified file or directory. An exception is not thrown if the file does not exist.
-            /// </summary>
+			/// <summary>Creates all directories in the specified path.</summary>
+			/// <param name="path">The directory path to create.</param>
+			public void CreateDirectory(string path)
+			{
+				//because a call to this method can actually create multiple diretories,
+				// we need to find out explicitly which are being created, and add a
+				// journal entry for each.
+
+				string strNormalizedPath = _rgxCleanPath.Replace(Path.GetFullPath(path), Path.DirectorySeparatorChar.ToString());
+				strNormalizedPath = strNormalizedPath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+				string[] strPaths = strNormalizedPath.Split(Path.DirectorySeparatorChar);
+
+				Int32 i = 0;
+				string strPath = "";
+				if (strPaths[0].EndsWith(Path.VolumeSeparatorChar.ToString()))
+				{
+					strPath = strPaths[0] + Path.DirectorySeparatorChar;
+					i++;
+				}
+				for (; i < strPaths.Length; i++)
+				{
+					//if we don't have write permission to the parent directory, then whether
+					// or not the child directory exists is irrelevant, as we won't be able to create it
+                    var fipWritePermission = new FileIOPermission(FileIOPermissionAccess.Write, strPath);
+                    strPath = Path.Combine(strPath, strPaths[i]);
+                    fipWritePermission.Demand();
+
+                    if (!Directory.Exists(strPath))
+                    {
+                        var r = new RollbackDirectory(strPath);
+                        try
+                        {
+                            Directory.CreateDirectory(strPath);
+                        }
+                        catch (Exception e)
+                        {
+                            r.CleanUp();
+                            throw new Exception(e.Message, e);
+                        }
+                        if (_tx != null)
+                        {
+                            _journal.Add(r);
+                            Enlist();
+                        }
+                    }
+				}
+			}
+
+            /// <summary>Deletes the specified file or directory. An exception is not thrown if the file does not exist.</summary>
             /// <param name="path">The file to be deleted.</param>
             public void Delete(string path)
             {
@@ -140,9 +156,7 @@ namespace ChinhDo.Transactions
                 }
             }
 
-            /// <summary>
-            /// Moves the specified file to a new location.
-            /// </summary>
+            /// <summary>Moves the specified file to a new location.</summary>
             /// <param name="srcFileName">The name of the file to move.</param>
             /// <param name="destFileName">The new path for the file.</param>
             public void Move(string srcFileName, string destFileName)
@@ -167,9 +181,7 @@ namespace ChinhDo.Transactions
                 }
             }
 
-            /// <summary>
-            /// Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.
-            /// </summary>
+            /// <summary>Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.</summary>
             /// <param name="fileName">The file to take a snapshot for.</param>
             public void Snapshot(string fileName)
             {
@@ -180,9 +192,7 @@ namespace ChinhDo.Transactions
                 }
             }
 
-            /// <summary>
-            /// Creates a file, write the specified <paramref name="contents"/> to the file.
-            /// </summary>
+            /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
             /// <param name="path">The file to write to.</param>
             /// <param name="contents">The string to write to the file.</param>
             public void WriteAllText(string path, string contents)
@@ -230,9 +240,7 @@ namespace ChinhDo.Transactions
                 preparingEnlistment.Prepared();
             }
 
-            /// <summary>
-            /// Notifies an enlisted object that a transaction is being rolled back (aborted).
-            /// </summary>
+            /// <summary>Notifies an enlisted object that a transaction is being rolled back (aborted).</summary>
             /// <param name="enlistment">A <see cref="T:System.Transactions.Enlistment"></see> object used to send a response to the transaction manager.</param>
             /// <remarks>This is typically called on a different thread from the transaction thread.</remarks>
             public void Rollback(Enlistment enlistment)
@@ -276,9 +284,7 @@ namespace ChinhDo.Transactions
 
             #region RollbackOps
 
-            /// <summary>
-            /// Represents a transactional file operation.
-            /// </summary>
+            /// <summary>Represents a transactional file operation.</summary>
             private abstract class RollbackOperation
             {
                 public abstract void Rollback();
@@ -321,7 +327,8 @@ namespace ChinhDo.Transactions
                     }
                     else
                     {
-                        File.Delete(_originalFileName);
+						if (File.Exists(_originalFileName))
+							File.Delete(_originalFileName);
                     }
                 }
 

@@ -155,6 +155,21 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
+        /// <summary>
+        /// Validate that we are able to create nested directotories and roll them back.
+        /// </summary>
+        [Test]
+        public void CanRollbackNestedDirectories()
+        {
+            string baseDir = _target.GetTempFileName(string.Empty);
+            string nested1 = Path.Combine(baseDir, "level1");
+            using (new TransactionScope())
+            {
+                _target.CreateDirectory(nested1);
+            }
+            Assert.IsFalse(Directory.Exists(baseDir), baseDir + " should not exist.");
+        }
+
         [Test]
         public void CanCreateDirectoryAndRollback()
         {
