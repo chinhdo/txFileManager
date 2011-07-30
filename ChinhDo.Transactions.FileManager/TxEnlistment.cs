@@ -292,13 +292,7 @@ namespace ChinhDo.Transactions
 
                 protected static string CreateTempFileName(string ext)
                 {
-                    Guid g;
-                    int hr = UuidCreateSequential(out g);
-                    if (hr != 0)
-                    {
-                        throw new ApplicationException("UuidCreateSequential failed: " + hr + ".");
-                    }
-
+                    Guid g = Guid.NewGuid();
                     string retVal = Path.Combine(_tempFolder, (_tempFilesPrefix != null ? _tempFilesPrefix + "-" : "")
                         + g.ToString().Substring(0, 16)) + ext;
 

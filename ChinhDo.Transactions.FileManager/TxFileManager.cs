@@ -13,9 +13,7 @@ namespace ChinhDo.Transactions
     /// </summary>
     public partial class TxFileManager : IFileManager
     {
-        /// <summary>
-        /// Initializes the <see cref="TxFileManager"/> class.
-        /// </summary>
+        /// <summary>Initializes the <see cref="TxFileManager"/> class.</summary>
         static TxFileManager()
         {
             _tempFolder = Path.Combine(Path.GetTempPath(), "CdFileMgr");
@@ -25,18 +23,14 @@ namespace ChinhDo.Transactions
             }
         }        
 
-        /// <summary>
-        /// Gets or sets a value indicating whether Transactions are enabled.
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether Transactions are enabled.</summary>
         public bool TxEnabled
         {
             get { return _txEnabled; }
             set { _txEnabled = value; }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether to ignore exceptions during Rollback.
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether to ignore exceptions during Rollback.</summary>
         public bool IgnoreExceptionsInRollback
         {
             get { return _ignoreExceptionsInRollback; }
@@ -45,9 +39,7 @@ namespace ChinhDo.Transactions
 
         #region IFileOperations
 
-        /// <summary>
-        /// Appends the specified string the file, creating the file if it doesn't already exist.
-        /// </summary>
+        /// <summary>Appends the specified string the file, creating the file if it doesn't already exist.</summary>
         /// <param name="path">The file to append the string to.</param>
         /// <param name="contents">The string to append to the file.</param>
         public void AppendAllText(string path, string contents)
@@ -55,9 +47,7 @@ namespace ChinhDo.Transactions
             GetEnlistment().AppendAllText(path, contents);
         }
 
-        /// <summary>
-        /// Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.
-        /// </summary>
+        /// <summary>Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.</summary>
         /// <param name="sourceFileName">The file to copy.</param>
         /// <param name="destFileName">The name of the destination file.</param>
         /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
@@ -66,27 +56,21 @@ namespace ChinhDo.Transactions
             GetEnlistment().Copy(sourceFileName, destFileName, overwrite);
         }
 
-        /// <summary>
-        /// Creates all directories in the specified path.
-        /// </summary>
+        /// <summary>Creates all directories in the specified path.</summary>
         /// <param name="path">The directory path to create.</param>
         public void CreateDirectory(string path)
         {
             GetEnlistment().CreateDirectory(path);
         }
 
-        /// <summary>
-        /// Deletes the specified file. An exception is not thrown if the file does not exist.
-        /// </summary>
+        /// <summary>Deletes the specified file. An exception is not thrown if the file does not exist.</summary>
         /// <param name="path">The file to be deleted.</param>
         public void Delete(string path)
         {
             GetEnlistment().Delete(path);
         }
 
-        /// <summary>
-        /// Moves the specified file to a new location.
-        /// </summary>
+        /// <summary>Moves the specified file to a new location.</summary>
         /// <param name="srcFileName">The name of the file to move.</param>
         /// <param name="destFileName">The new path for the file.</param>
         public void Move(string srcFileName, string destFileName)
@@ -94,18 +78,14 @@ namespace ChinhDo.Transactions
             GetEnlistment().Move(srcFileName, destFileName);
         }
 
-        /// <summary>
-        /// Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.
-        /// </summary>
+        /// <summary>Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.</summary>
         /// <param name="fileName">The file to take a snapshot for.</param>
         public void Snapshot(string fileName)
         {
             GetEnlistment().Snapshot(fileName);
         }
 
-        /// <summary>
-        /// Creates a file, write the specified <paramref name="contents"/> to the file.
-        /// </summary>
+        /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
         /// <param name="path">The file to write to.</param>
         /// <param name="contents">The string to write to the file.</param>
         public void WriteAllText(string path, string contents)
@@ -115,9 +95,7 @@ namespace ChinhDo.Transactions
 
         #endregion
 
-        /// <summary>
-        /// Determines whether the specified path refers to a directory that exists on disk.
-        /// </summary>
+        /// <summary>Determines whether the specified path refers to a directory that exists on disk.</summary>
         /// <param name="path">The directory to check.</param>
         /// <returns>True if the directory exists.</returns>
         public bool DirectoryExists(string path)
@@ -125,9 +103,7 @@ namespace ChinhDo.Transactions
             return Directory.Exists(path);
         }
 
-        /// <summary>
-        /// Determines whether the specified file exists.
-        /// </summary>
+        /// <summary>Determines whether the specified file exists.</summary>
         /// <param name="path">The file to check.</param>
         /// <returns>True if the file exists.</returns>
         public bool FileExists(string path)
@@ -135,9 +111,7 @@ namespace ChinhDo.Transactions
             return File.Exists(path);
         }
 
-        /// <summary>
-        /// Gets the files in the specified directory.
-        /// </summary>
+        /// <summary>Gets the files in the specified directory.</summary>
         /// <param name="path">The directory to get files.</param>
         /// <param name="handler">The <see cref="FileEventHandler"/> object to call on each file found.</param>
         /// <param name="recursive">if set to <c>true</c>, include files in sub directories recursively.</param>
@@ -163,9 +137,7 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>
-        /// Creates a temporary file name. File is not automatically created.
-        /// </summary>
+        /// <summary>Creates a temporary file name. File is not automatically created.</summary>
         /// <param name="extension">File extension (with the dot).</param>
         public string GetTempFileName(string extension)
         {
@@ -179,26 +151,20 @@ namespace ChinhDo.Transactions
             return retVal;
         }
 
-        /// <summary>
-        /// Creates a temporary file name. File is not automatically created.
-        /// </summary>
+        /// <summary>Creates a temporary file name. File is not automatically created.</summary>
         public string GetTempFileName()
         {
             return GetTempFileName(".tmp");
         }
 
-        /// <summary>
-        /// Gets a temporary directory.
-        /// </summary>
+        /// <summary>Gets a temporary directory.</summary>
         /// <returns>The path to the newly created temporary directory.</returns>
         public string GetTempDirectory()
         {
             return GetTempDirectory(Path.GetTempPath(), string.Empty);
         }
 
-        /// <summary>
-        /// Gets a temporary directory.
-        /// </summary>
+        /// <summary>Gets a temporary directory.</summary>
         /// <param name="parentDirectory">The parent directory.</param>
         /// <param name="prefix">The prefix of the directory name.</param>
         /// <returns>Path to the temporary directory. The temporary directory is created automatically.</returns>
@@ -213,9 +179,6 @@ namespace ChinhDo.Transactions
         }
 
         #region Private
-
-        [DllImport("rpcrt4.dll", SetLastError = true)]
-        private static extern int UuidCreateSequential(out Guid guid);
 
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
         [ThreadStatic] private static Dictionary<string, TxEnlistment> _enlistments;
@@ -263,8 +226,6 @@ namespace ChinhDo.Transactions
         #endregion
     }
 
-    /// <summary>
-    /// Delegate to call when a new found is found.
-    /// </summary>
+    /// <summary>Delegate to call when a new found is found.</summary>
     public delegate void FileEventHandler(string fileName, ref bool cancel);
 }
