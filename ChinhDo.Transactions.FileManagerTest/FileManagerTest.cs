@@ -3,30 +3,24 @@ using System.IO;
 using System.Threading;
 using System.Transactions;
 using System.Xml;
-using System.Xml.Xsl;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChinhDo.Transactions.FileManagerTest
 {
-    // To run these tests, choose Test/Start Selected Test Project...
-
-    [TestClass]
-    public class FileManagerTest
+    [TestFixture]
+    class FileManagerTest
     {
-        public TestContext TestContext
-        {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
-        }
+        private int _numTempFiles;
+        private IFileManager _target;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _target = new TxFileManager();
             _numTempFiles = Directory.GetFiles(Path.Combine(Path.GetTempPath(), "CdFileMgr")).Length;
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             int numTempFiles = Directory.GetFiles(Path.Combine(Path.GetTempPath(), "CdFileMgr")).Length;
@@ -35,7 +29,7 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Operations
 
-        [TestMethod]
+        [Test]
         public void CanAppendText()
         {
             string f1 = _target.GetTempFileName();
@@ -56,7 +50,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod, ExpectedException(typeof (IOException))]
+        [Test, ExpectedException(typeof(IOException))]
         public void CannotAppendText()
         {
             string f1 = _target.GetTempFileName();
@@ -78,7 +72,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanAppendTextAndRollback()
         {
             string f1 = _target.GetTempFileName();
@@ -91,7 +85,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.IsFalse(File.Exists(f1), f1 + " should not exist.");
         }
 
-        [TestMethod]
+        [Test]
         public void CanCopy()
         {
             string sourceFileName = _target.GetTempFileName();
@@ -117,7 +111,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanCopyAndRollback()
         {
             string sourceFileName = _target.GetTempFileName();
@@ -142,7 +136,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateDirectory()
         {
             string d1 = _target.GetTempFileName();
@@ -161,7 +155,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateDirectoryAndRollback()
         {
             string d1 = _target.GetTempFileName();
@@ -172,7 +166,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.IsFalse(Directory.Exists(d1), d1 + " should not exist.");
         }
 
-        [TestMethod]
+        [Test]
         public void CanDeleteFile()
         {
             string f1 = _target.GetTempFileName();
@@ -195,7 +189,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanDeleteFileAndRollback()
         {
             string f1 = _target.GetTempFileName();
@@ -218,7 +212,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanMoveFile()
         {
             const string contents = "abc";
@@ -243,7 +237,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanMoveFileAndRollback()
         {
             const string contents = "abc";
@@ -270,7 +264,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanSnapshot()
         {
             string f1 = _target.GetTempFileName();
@@ -287,7 +281,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.IsFalse(File.Exists(f1), f1 + " should not exist.");
         }
 
-        [TestMethod]
+        [Test]
         public void CanWriteAllText()
         {
             string f1 = _target.GetTempFileName();
@@ -310,7 +304,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanWriteAllTextAndRollback()
         {
             string f1 = _target.GetTempFileName();
@@ -337,7 +331,7 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Error Handling
 
-        [TestMethod]
+        [Test]
         public void CanHandleCopyErrors()
         {
             string f1 = _target.GetTempFileName();
@@ -369,16 +363,15 @@ namespace ChinhDo.Transactions.FileManagerTest
             {
                 File.Delete(f1);
                 fs.Close();
-                File.Delete(f2);                
+                File.Delete(f2);
             }
         }
 
         #endregion
 
-
         #region Transaction Support
 
-        [TestMethod]
+        [Test]
         public void CannotRollback()
         {
             _target.IgnoreExceptionsInRollback = true;
@@ -407,7 +400,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanReuseManager()
         {
             {
@@ -457,7 +450,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanSupportTransactionScopeOptionSuppress()
         {
             const string contents = "abc";
@@ -477,7 +470,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanDoMultiThread()
         {
             const int numThreads = 10;
@@ -506,7 +499,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CanNestTransactions()
         {
             string f1 = _target.GetTempFileName(".txt");
@@ -550,10 +543,5 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         #endregion
-
-        private int _numTempFiles;
-        private IFileManager _target;
-        private TestContext testContextInstance;
-
     }
 }

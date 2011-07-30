@@ -253,7 +253,7 @@ namespace ChinhDo.Transactions
                 {
                     if (IgnoreExceptionsInRollback)
                     {
-                        EventLog.WriteEntry(GetType().FullName, "Failed to rollback." + Environment.NewLine + e.ToString(), EventLogEntryType.Warning);
+                        // TODO EventLog.WriteEntry(GetType().FullName, "Failed to rollback." + Environment.NewLine + e.ToString(), EventLogEntryType.Warning);
                     }
                     else
                     {

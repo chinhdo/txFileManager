@@ -1,0 +1,12 @@
+@ECHO OFF
+
+REM To enable unit testing as a post build event, rename nunit.cmd.template to nunit.cmd,
+REM then set the correct path to nunit-console.exe.
+
+SET NUNIT="c:\Program Files\NUnit 2.5.10\bin\net-2.0\nunit-console.exe"
+
+%NUNIT% %2 /xml:"%~1tools\TestResult.xml" 1>nul 2>nul
+
+"%~1tools\msxsl.exe" "%~1tools\TestResult.xml" "%~1tools\nunit.xslt"
+
+DEL "%~1tools\TestResult.xml"

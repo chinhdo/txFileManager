@@ -1,0 +1,7 @@
+To enable FxCop analysis in Debug build:
+1. Install FxCop 1.36. It is part of the Microsoft Windows SDK for Windows 7 and .NET Framework 3.5 SP1.
+2. Copy the tools\fxcop.cmd.template to tools\fxcop.cmd, and set the FXCOPDIR variable to the location of FxCopCmd.exe.
+
+To run the unit tests in Debug build:
+1. Install NUnit 2.5.10. The tests will probably run with earlier versions, too, but it was not tested.
+2. Copy the tools\nunit.cmd.template to tools\nunit.cmd, and set the NUNIT variable to the correct path of nunit-console.exe
