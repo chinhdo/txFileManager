@@ -323,6 +323,9 @@ namespace ChinhDo.Transactions
                 {
                     if (_backupFileName != null)
                     {
+						string strDirectory = Path.GetDirectoryName(_originalFileName);
+						if (!Directory.Exists(strDirectory))
+							Directory.CreateDirectory(strDirectory);
                         File.Copy(_backupFileName, _originalFileName, true);
                     }
                     else

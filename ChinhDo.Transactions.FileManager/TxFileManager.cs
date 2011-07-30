@@ -63,7 +63,7 @@ namespace ChinhDo.Transactions
         /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
         public void Copy(string sourceFileName, string destFileName, bool overwrite)
         {
-            GetEnlistment().Copy(sourceFileName, destFileName, true);
+            GetEnlistment().Copy(sourceFileName, destFileName, overwrite);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace ChinhDo.Transactions
         /// <param name="extension">File extension (with the dot).</param>
         public string GetTempFileName(string extension)
         {
-            Guid g = GetSequentialGuid();
+            Guid g = Guid.NewGuid();
 
             string retVal = Path.Combine(_tempFolder, (_tempFilesPrefix != null ? _tempFilesPrefix + "-" : "")
                 + g.ToString().Substring(0, 8)) + extension;
@@ -204,7 +204,7 @@ namespace ChinhDo.Transactions
         /// <returns>Path to the temporary directory. The temporary directory is created automatically.</returns>
         public string GetTempDirectory(string parentDirectory, string prefix)
         {
-            Guid g = GetSequentialGuid();
+            Guid g = Guid.NewGuid();
             string dirName = Path.Combine(parentDirectory, prefix + g.ToString().Substring(0, 16));
 
             CreateDirectory(dirName);
@@ -258,20 +258,6 @@ namespace ChinhDo.Transactions
             }
 
             return enlistment;
-        }
-
-        /// <summary>
-        /// Gets a sequential GUID.
-        /// </summary>
-        public static Guid GetSequentialGuid()
-        {
-            Guid g;
-            int hr = UuidCreateSequential(out g);
-            if (hr != 0)
-            {
-                throw new ApplicationException("UuidCreateSequential failed: " + hr + ".");
-            }
-            return g;
         }
 
         #endregion
