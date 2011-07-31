@@ -59,11 +59,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RollbackDirectory.cs" />
+    <Compile Include="RollbackFile.cs" />
+    <Compile Include="RollbackOperation.cs" />
     <Compile Include="TxFileManager.cs" />
     <Compile Include="IFileManager.cs" />
     <Compile Include="IFileOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TxEnlistment.cs" />
+    <Compile Include="FileUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

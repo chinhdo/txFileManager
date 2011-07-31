@@ -11,17 +11,15 @@ namespace ChinhDo.Transactions
     /// File Resource Manager. Allows inclusion of file system operations in transactions.
     /// http://www.chinhdo.com/20080825/transactional-file-manager/
     /// </summary>
-    public partial class TxFileManager : IFileManager
+    public class TxFileManager : IFileManager
     {
-        /// <summary>Initializes the <see cref="TxFileManager"/> class.</summary>
-        static TxFileManager()
+        /// <summary>
+        /// Initializes the <see cref="TxFileManager"/> class.
+        /// </summary>
+        public TxFileManager()
         {
-            _tempFolder = Path.Combine(Path.GetTempPath(), "CdFileMgr");
-            if (! Directory.Exists(_tempFolder))
-            {
-                Directory.CreateDirectory(_tempFolder);
-            }
-        }        
+            FileUtils.EnsureTempFolderExists();
+        }
 
         /// <summary>Gets or sets a value indicating whether Transactions are enabled.</summary>
         public bool TxEnabled
@@ -141,10 +139,7 @@ namespace ChinhDo.Transactions
         /// <param name="extension">File extension (with the dot).</param>
         public string GetTempFileName(string extension)
         {
-            Guid g = Guid.NewGuid();
-
-            string retVal = Path.Combine(_tempFolder, (_tempFilesPrefix != null ? _tempFilesPrefix + "-" : "")
-                + g.ToString().Substring(0, 8)) + extension;
+            string retVal = FileUtils.GetTempFileName(extension);
 
             Snapshot(retVal);
 
@@ -185,8 +180,6 @@ namespace ChinhDo.Transactions
 
         private static readonly object _enlistmentsLock = new object();
         private bool _txEnabled = true;
-        private readonly static string _tempFolder;
-        private readonly static string _tempFilesPrefix = "";
         private bool _ignoreExceptionsInRollback = false;
 
         private TxEnlistment GetEnlistment()
