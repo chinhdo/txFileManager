@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace ChinhDo.Transactions
@@ -22,7 +23,7 @@ namespace ChinhDo.Transactions
                 }
                 else
                 {
-                    EventLog.WriteEntry(GetType().FullName, "Failed to delete directory " + _path + ". Directory was not empty.", EventLogEntryType.Warning);
+                    throw new Exception("Failed to delete directory " + _path + ". Directory was not empty.");
                 }
             }
         }
