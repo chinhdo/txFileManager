@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Transactions;
@@ -29,7 +28,6 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         #region Operations
-
         [Test]
         public void CanAppendText()
         {
@@ -180,18 +178,6 @@ namespace ChinhDo.Transactions.FileManagerTest
                 _target.CreateDirectory(d1);
             }
             Assert.IsFalse(Directory.Exists(d1), d1 + " should not exist.");
-        }
-
-        [Test, ExpectedException(typeof(TransactionException))]
-        public void CannotDeleteNonEmptyDirectory()
-        {
-            string d1 = _target.GetTempFileName();
-            using (var scope1 = new TransactionScope())
-            {
-                _target.CreateDirectory(d1);
-                Directory.CreateDirectory(Path.Combine(d1, "subDir"));
-            }
-            Assert.IsFalse(Directory.Exists(d1), d1 + " should not exist.");            
         }
 
         [Test]

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Transactions;
 
 namespace ChinhDo.Transactions
@@ -19,21 +17,14 @@ namespace ChinhDo.Transactions
         public TxFileManager()
         {
             FileUtils.EnsureTempFolderExists();
+            TxEnabled = true;
         }
 
         /// <summary>Gets or sets a value indicating whether Transactions are enabled.</summary>
-        public bool TxEnabled
-        {
-            get { return _txEnabled; }
-            set { _txEnabled = value; }
-        }
+        public bool TxEnabled { get; set; }
 
         /// <summary>Gets or sets a value indicating whether to ignore exceptions during Rollback.</summary>
-        public bool IgnoreExceptionsInRollback
-        {
-            get { return _ignoreExceptionsInRollback; }
-            set { _ignoreExceptionsInRollback = value; }
-        }
+        public bool IgnoreExceptionsInRollback { get; set; }
 
         #region IFileOperations
 
@@ -42,7 +33,14 @@ namespace ChinhDo.Transactions
         /// <param name="contents">The string to append to the file.</param>
         public void AppendAllText(string path, string contents)
         {
-            GetEnlistment().AppendAllText(path, contents);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new AppendAllTextOperation(path, contents));
+            }
+            else
+            {
+                File.AppendAllText(path, contents);
+            }
         }
 
         /// <summary>Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.</summary>
@@ -51,21 +49,42 @@ namespace ChinhDo.Transactions
         /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
         public void Copy(string sourceFileName, string destFileName, bool overwrite)
         {
-            GetEnlistment().Copy(sourceFileName, destFileName, overwrite);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new CopyOperation(sourceFileName, destFileName, overwrite));
+            }
+            else
+            {
+                File.Copy(sourceFileName, destFileName, overwrite);
+            }
         }
 
         /// <summary>Creates all directories in the specified path.</summary>
         /// <param name="path">The directory path to create.</param>
         public void CreateDirectory(string path)
         {
-            GetEnlistment().CreateDirectory(path);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new CreateDirectoryOperation(path));
+            }
+            else
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         /// <summary>Deletes the specified file. An exception is not thrown if the file does not exist.</summary>
         /// <param name="path">The file to be deleted.</param>
         public void Delete(string path)
         {
-            GetEnlistment().Delete(path);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new DeleteOperation(path));
+            }
+            else
+            {
+                File.Delete(path);
+            }
         }
 
         /// <summary>Moves the specified file to a new location.</summary>
@@ -73,14 +92,24 @@ namespace ChinhDo.Transactions
         /// <param name="destFileName">The new path for the file.</param>
         public void Move(string srcFileName, string destFileName)
         {
-            GetEnlistment().Move(srcFileName, destFileName);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new MoveOperation(srcFileName, destFileName));
+            }
+            else
+            {
+                File.Move(srcFileName, destFileName);
+            }
         }
 
         /// <summary>Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.</summary>
         /// <param name="fileName">The file to take a snapshot for.</param>
         public void Snapshot(string fileName)
         {
-            GetEnlistment().Snapshot(fileName);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new SnapshotOperation(fileName));
+            }
         }
 
         /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
@@ -88,7 +117,14 @@ namespace ChinhDo.Transactions
         /// <param name="contents">The string to write to the file.</param>
         public void WriteAllText(string path, string contents)
         {
-            GetEnlistment().WriteAllText(path, contents);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllTextOperation(path, contents));
+            }
+            else
+            {
+                File.WriteAllText(path, contents);
+            }
         }
 
         #endregion
@@ -176,49 +212,33 @@ namespace ChinhDo.Transactions
         #region Private
 
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
-        [ThreadStatic] private static Dictionary<string, TxEnlistment> _enlistments;
+        [ThreadStatic]
+        private static Dictionary<string, TxEnlistment> _enlistments = _enlistments = new Dictionary<string, TxEnlistment>();
 
         private static readonly object _enlistmentsLock = new object();
-        private bool _txEnabled = true;
-        private bool _ignoreExceptionsInRollback = false;
 
-        private TxEnlistment GetEnlistment()
+        private bool IsInTransaction()
+        {
+            return TxEnabled && Transaction.Current != null;
+        }
+
+        private void EnlistOperation(IRollbackableOperation operation)
         {
             Transaction tx = Transaction.Current;
             TxEnlistment enlistment;
 
-            if (TxEnabled && tx != null)
+            lock (_enlistmentsLock)
             {
-                lock (_enlistmentsLock)
+                if (!_enlistments.TryGetValue(tx.TransactionInformation.LocalIdentifier, out enlistment))
                 {
-                    if (_enlistments == null)
-                    {
-                        _enlistments = new Dictionary<string, TxEnlistment>();
-                    }
-
-                    if (_enlistments.ContainsKey(tx.TransactionInformation.LocalIdentifier))
-                    {
-                        enlistment = _enlistments[tx.TransactionInformation.LocalIdentifier];
-                    }
-                    else
-                    {
-                        enlistment = new TxEnlistment(tx);
-                        enlistment.IgnoreExceptionsInRollback = IgnoreExceptionsInRollback;
-                        _enlistments.Add(tx.TransactionInformation.LocalIdentifier, enlistment);
-                    }
+                    enlistment = new TxEnlistment(tx);
+                    enlistment.IgnoreExceptionsInRollback = IgnoreExceptionsInRollback;
+                    _enlistments.Add(tx.TransactionInformation.LocalIdentifier, enlistment);
                 }
+                enlistment.EnlistOperation(operation);
             }
-            else
-            {
-                enlistment = new TxEnlistment();
-            }
-
-            return enlistment;
         }
 
         #endregion
     }
-
-    /// <summary>Delegate to call when a new found is found.</summary>
-    public delegate void FileEventHandler(string fileName, ref bool cancel);
 }
