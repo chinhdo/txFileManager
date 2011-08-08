@@ -17,11 +17,7 @@ namespace ChinhDo.Transactions
         public TxFileManager()
         {
             FileUtils.EnsureTempFolderExists();
-            TxEnabled = true;
         }
-
-        /// <summary>Gets or sets a value indicating whether Transactions are enabled.</summary>
-        public bool TxEnabled { get; set; }
 
         #region IFileOperations
 
@@ -214,12 +210,12 @@ namespace ChinhDo.Transactions
 
         private static readonly object _enlistmentsLock = new object();
 
-        private bool IsInTransaction()
+        private static bool IsInTransaction()
         {
-            return TxEnabled && Transaction.Current != null;
+            return Transaction.Current != null;
         }
 
-        private void EnlistOperation(IRollbackableOperation operation)
+        private static void EnlistOperation(IRollbackableOperation operation)
         {
             Transaction tx = Transaction.Current;
             TxEnlistment enlistment;

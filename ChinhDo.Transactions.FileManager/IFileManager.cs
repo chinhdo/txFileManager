@@ -6,11 +6,6 @@ namespace ChinhDo.Transactions
     public interface IFileManager : IFileOperations
     {
         /// <summary>
-        /// Gets or sets a value indicating whether Transactions are enabled.
-        /// </summary>
-        bool TxEnabled { get; set; }
-
-        /// <summary>
         /// Determines whether the specified path refers to a directory that exists on disk.
         /// </summary>
         /// <param name="path">The directory to check.</param>
