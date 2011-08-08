@@ -213,7 +213,7 @@ namespace ChinhDo.Transactions
 
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
         [ThreadStatic]
-        private static Dictionary<string, TxEnlistment> _enlistments = _enlistments = new Dictionary<string, TxEnlistment>();
+        private static Dictionary<string, TxEnlistment> _enlistments;
 
         private static readonly object _enlistmentsLock = new object();
 
@@ -229,6 +229,11 @@ namespace ChinhDo.Transactions
 
             lock (_enlistmentsLock)
             {
+                if (_enlistments == null)
+                {
+                    _enlistments = new Dictionary<string, TxEnlistment>();
+                }
+
                 if (!_enlistments.TryGetValue(tx.TransactionInformation.LocalIdentifier, out enlistment))
                 {
                     enlistment = new TxEnlistment(tx);
