@@ -385,10 +385,9 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Transaction Support
 
-        [Test]
+        [Test, ExpectedException(typeof(TransactionException))]
         public void CannotRollback()
         {
-            _target.IgnoreExceptionsInRollback = true;
             string f1 = _target.GetTempFileName(".txt");
             string f2 = _target.GetTempFileName(".txt");
 
@@ -402,7 +401,7 @@ namespace ChinhDo.Transactions.FileManagerTest
                     FileInfo fi1 = new FileInfo(f1);
                     fi1.Attributes = FileAttributes.ReadOnly;
 
-                    scope1.Dispose(); // rollback
+                    // rollback
                 }
             }
             finally
@@ -410,7 +409,6 @@ namespace ChinhDo.Transactions.FileManagerTest
                 FileInfo fi1 = new FileInfo(f1);
                 fi1.Attributes = FileAttributes.Normal;
                 File.Delete(f1);
-                File.Delete(f2);
             }
         }
 

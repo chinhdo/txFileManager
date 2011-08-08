@@ -16,9 +16,6 @@ namespace ChinhDo.Transactions
             tx.EnlistVolatile(this, EnlistmentOptions.None);
         }
 
-        /// <summary>Gets or sets a value indicating whether to ignore exceptions during Rollback.</summary>
-        public bool IgnoreExceptionsInRollback { get; set; }
-
         /// <summary>
         /// Enlists <paramref name="operation"/> in its journal, so it will be committed or rolled
         /// together with the other enlisted operations.
@@ -34,7 +31,7 @@ namespace ChinhDo.Transactions
         public void Commit(Enlistment enlistment)
         {
             DisposeJournal();
-            
+
             enlistment.Done();
         }
 
@@ -65,14 +62,7 @@ namespace ChinhDo.Transactions
             }
             catch (Exception e)
             {
-                if (IgnoreExceptionsInRollback)
-                {
-                    // TODO EventLog.WriteEntry(GetType().FullName, "Failed to rollback." + Environment.NewLine + e.ToString(), EventLogEntryType.Warning);
-                }
-                else
-                {
-                    throw new TransactionException("Failed to roll back.", e);
-                }
+                throw new TransactionException("Failed to roll back.", e);
             }
 
             enlistment.Done();

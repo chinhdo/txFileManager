@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ChinhDo.Transactions
 {
     /// <summary>
@@ -13,11 +9,6 @@ namespace ChinhDo.Transactions
         /// Gets or sets a value indicating whether Transactions are enabled.
         /// </summary>
         bool TxEnabled { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to ignore exceptions during Rollback.
-        /// </summary>
-        bool IgnoreExceptionsInRollback { get; set; }
 
         /// <summary>
         /// Determines whether the specified path refers to a directory that exists on disk.

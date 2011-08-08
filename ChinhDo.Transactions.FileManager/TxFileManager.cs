@@ -23,9 +23,6 @@ namespace ChinhDo.Transactions
         /// <summary>Gets or sets a value indicating whether Transactions are enabled.</summary>
         public bool TxEnabled { get; set; }
 
-        /// <summary>Gets or sets a value indicating whether to ignore exceptions during Rollback.</summary>
-        public bool IgnoreExceptionsInRollback { get; set; }
-
         #region IFileOperations
 
         /// <summary>Appends the specified string the file, creating the file if it doesn't already exist.</summary>
@@ -237,7 +234,6 @@ namespace ChinhDo.Transactions
                 if (!_enlistments.TryGetValue(tx.TransactionInformation.LocalIdentifier, out enlistment))
                 {
                     enlistment = new TxEnlistment(tx);
-                    enlistment.IgnoreExceptionsInRollback = IgnoreExceptionsInRollback;
                     _enlistments.Add(tx.TransactionInformation.LocalIdentifier, enlistment);
                 }
                 enlistment.EnlistOperation(operation);
