@@ -181,6 +181,55 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         [Test]
+        public void CanDeleteDirectory()
+        {
+            string f1 = _target.GetTempFileName();
+            try
+            {
+                Directory.CreateDirectory(f1);
+
+                using (TransactionScope scope1 = new TransactionScope())
+                {
+                    _target.DeleteDirectory(f1);
+                    scope1.Complete();
+                }
+
+                Assert.IsFalse(Directory.Exists(f1), f1 + " should no longer exist.");
+            }
+            finally
+            {
+                if (Directory.Exists(f1))
+                {
+                    Directory.Delete(f1, true);
+                }
+            }
+        }
+
+        [Test]
+        public void CanDeleteDirectoryAndRollback()
+        {
+            string f1 = _target.GetTempFileName();
+            try
+            {
+                Directory.CreateDirectory(f1);
+
+                using (TransactionScope scope1 = new TransactionScope())
+                {
+                    _target.DeleteDirectory(f1);
+                }
+
+                Assert.IsTrue(Directory.Exists(f1), f1 + " should exist.");
+            }
+            finally
+            {
+                if (Directory.Exists(f1))
+                {
+                    Directory.Delete(f1, true);
+                }
+            }
+        }
+
+        [Test]
         public void CanDeleteFile()
         {
             string f1 = _target.GetTempFileName();
@@ -199,7 +248,10 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
             finally
             {
-                File.Delete(f1);
+                if (Directory.Exists(f1))
+                {
+                    Directory.Delete(f1, true);
+                }
             }
         }
 
@@ -555,16 +607,5 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         #endregion
-
-        //[Test]
-        //public void Scratch()
-        //{
-        //    using (var scope = new TransactionScope(TransactionScopeOption.Required))
-        //    {
-        //        //throw new Exception("Test.");
-        //        // _target.CreateDirectory(@"c:\temp\1\a");
-        //        _target.CreateDirectory(@"\\VPC01\Temp\2\a\b\c");
-        //    }
-        //}
     }
 }

@@ -72,11 +72,25 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new DeleteOperation(path));
+                EnlistOperation(new DeleteFileOperation(path));
             }
             else
             {
                 File.Delete(path);
+            }
+        }
+
+        /// <summary>Deletes the specified directory and all its contents. An exception is not thrown if the directory does not exist.</summary>
+        /// <param name="path">The directory to be deleted.</param>
+        public void DeleteDirectory(string path)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new DeleteDirectoryOperation(path));
+            }
+            else
+            {
+                Directory.Delete(path, true);
             }
         }
 

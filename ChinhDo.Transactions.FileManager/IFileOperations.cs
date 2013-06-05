@@ -37,6 +37,12 @@ namespace ChinhDo.Transactions
         void Delete(string path);
 
         /// <summary>
+        /// Deletes the specified directory and all its contents. An exception is not thrown if the directory does not exist.
+        /// </summary>
+        /// <param name="path">The directory to be deleted.</param>
+        void DeleteDirectory(string path);
+
+        /// <summary>
         /// Moves the specified file to a new location.
         /// </summary>
         /// <param name="srcFileName">The name of the file to move.</param>

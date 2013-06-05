@@ -62,7 +62,8 @@
     <Compile Include="AppendAllTextOperation.cs" />
     <Compile Include="CopyOperation.cs" />
     <Compile Include="CreateDirectoryOperation.cs" />
-    <Compile Include="DeleteOperation.cs" />
+    <Compile Include="DeleteDirectoryOperation.cs" />
+    <Compile Include="DeleteFileOperation.cs" />
     <Compile Include="FileEventHandler.cs" />
     <Compile Include="SingleFileOperation.cs" />
     <Compile Include="MoveOperation.cs" />
