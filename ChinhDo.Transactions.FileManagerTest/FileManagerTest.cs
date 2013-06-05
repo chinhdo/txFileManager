@@ -555,5 +555,16 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         #endregion
+
+        //[Test]
+        //public void Scratch()
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeOption.Required))
+        //    {
+        //        //throw new Exception("Test.");
+        //        // _target.CreateDirectory(@"c:\temp\1\a");
+        //        _target.CreateDirectory(@"\\VPC01\Temp\2\a\b\c");
+        //    }
+        //}
     }
 }
