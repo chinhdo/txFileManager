@@ -1,11 +1,13 @@
-This solution contains Chinh Do's Transactional File Manager. Transaction File Manager 
+This solution contains the Transactional File Manager. Transactional File Manager 
 allows the inclusion of filesystem operations in a System.Transactions transaction.
 
+This is an open source project. The project web site is at https://transactionalfilemgr.codeplex.com/.
+
 If you find a bug or have ideas for enhancements, I would love to hear from you.
-Leave your feedback here: http://www.chinhdo.com/20080825/transactional-file-manager/ or
+Leave your feedback here: https://transactionalfilemgr.codeplex.com/, or http://www.chinhdo.com/20080825/transactional-file-manager/ or
 email: cdo@vienxu.com
 
-Copyright (c) 2008 Chinh Do
+Copyright (c) 2008-2013 Chinh Do
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
