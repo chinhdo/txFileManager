@@ -134,6 +134,21 @@ namespace ChinhDo.Transactions
             }
         }
 
+        /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
+        /// <param name="path">The file to write to.</param>
+        /// <param name="contents">The bytes to write to the file.</param>
+        public void WriteAllBytes(string path, byte[] contents)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllBytesOperation(path, contents));
+            }
+            else
+            {
+                File.WriteAllBytes(path, contents);
+            }
+        }
+
         #endregion
 
         /// <summary>Determines whether the specified path refers to a directory that exists on disk.</summary>

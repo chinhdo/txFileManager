@@ -393,6 +393,31 @@ namespace ChinhDo.Transactions.FileManagerTest
             }
         }
 
+        [Test]
+        public void Scratch()
+        {
+            string f1 = _target.GetTempFileName();
+            try
+            {
+                Directory.CreateDirectory(f1);
+
+                using (TransactionScope scope1 = new TransactionScope())
+                {
+                    _target.DeleteDirectory(f1);
+                    scope1.Complete();
+                }
+
+                Assert.IsFalse(Directory.Exists(f1), f1 + " should no longer exist.");
+            }
+            finally
+            {
+                if (Directory.Exists(f1))
+                {
+                    Directory.Delete(f1, true);
+                }
+            }            
+        }
+
         #endregion
 
         #region Error Handling

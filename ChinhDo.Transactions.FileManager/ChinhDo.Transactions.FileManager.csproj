@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TxEnlistment.cs" />
     <Compile Include="FileUtils.cs" />
+    <Compile Include="WriteAllBytesOperation.cs" />
     <Compile Include="WriteAllTextOperation.cs" />
   </ItemGroup>
   <ItemGroup>
