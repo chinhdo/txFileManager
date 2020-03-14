@@ -5,7 +5,7 @@ namespace ChinhDo.Transactions
 {
     static class FileUtils
     {
-        private static readonly string tempFolder = Path.Combine(Path.GetTempPath(), "CdFileMgr");
+        private static readonly string tempFolder = Path.Combine(Path.GetTempPath(), "TxFileMgr-fc4eed76ee9b");
 
         /// <summary>
         /// Ensures that the folder that contains the temporary files exists.
@@ -22,7 +22,6 @@ namespace ChinhDo.Transactions
         /// Returns a unique temporary file name.
         /// </summary>
         /// <param name="extension"></param>
-        /// <returns></returns>
         public static string GetTempFileName(string extension)
         {
             Guid g = Guid.NewGuid();

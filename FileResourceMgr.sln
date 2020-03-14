@@ -1,9 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinhDo.Transactions.FileManager", "ChinhDo.Transactions.FileManager\ChinhDo.Transactions.FileManager.csproj", "{E824ACBB-90C8-4C60-9D52-9C8020E98E3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinhDo.Transactions.FileManagerTest", "ChinhDo.Transactions.FileManagerTest\ChinhDo.Transactions.FileManagerTest.csproj", "{2C3F1182-D243-448C-84B0-2F869A96A871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E5CF1C2-CF9F-45EF-B08A-095B378ABF9F}"
+	ProjectSection(SolutionItems) = preProject
+		run.ps1 = run.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FC7DBF3-FE59-4D6D-B610-59D89DA537D7}
 	EndGlobalSection
 EndGlobal
