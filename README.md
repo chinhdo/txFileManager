@@ -42,3 +42,21 @@ This library is also available from [NuGet](https://www.nuget.org/packages/TxFil
 ## How do I run tests?
 
 In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
+
+## Can I reuse instances of TxFileManager?
+
+It's not expensive to create new instances of TxFileManager as eeded. There's a bit of overhead (like creating instances of any small class) but not much.
+
+On the other hand, you can also re-use the same instance for multiple transactions, even nested transactions.
+
+## Is TxFileManager Thread Safe?
+
+Yes - it's been tested for that.
+
+## Which IsolationLevel's are supported?
+
+Regardless of the specified IsolationLevel, the effective IsolationLevel is ReadUncommitted.
+
+## What does the release roadmap look like?
+
+I am working on upgrading the library to the latest .NET Framework and also to make sure it works with .NET Core on Linux. Next will be some enhancement requests (like adding support for copyping/moving/deleting directories) that were pending from the CodePlex project.
