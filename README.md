@@ -41,4 +41,4 @@ This library is also available from [NuGet](https://www.nuget.org/packages/TxFil
 # Frequently Ased Questions
 ## How do I run tests?
 
-Open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
+In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)

@@ -1,8 +1,0 @@
-REM To enable code analysis as a post build event, rename fxcop.cmd.template to fxcop.cmd,
-REM then set the correct path to FxCop install directory in it.
-
-@ECHO OFF
-
-SET FXCOPDIR="c:\Program Files\Microsoft FxCop 1.36\"
-
-%FXCOPDIR%FxCopCmd.exe /file:%1 /console
