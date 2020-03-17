@@ -1,7 +1,10 @@
 # Summary
-.NET Transactional File Manager is a .NET API that supports including file system operations such as file copy, move, delete, append, etc. in a transaction. It's an implementation of System.Transaction.IEnlistmentNotification (works with System.Transactions.TransactionScope).
+.NET Transactional File Manager is a .NET API that supports including file system operations such
+as file copy, move, delete, append, etc. in a transaction. It's an implementation of
+System.Transaction.IEnlistmentNotification.
 
-This project was originally on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and was migrated to GitHub using [fast-export](https://github.com/frej/fast-export) by Frej Drejhammar.
+This project was originally on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and
+was migrated to GitHub using [fast-export](https://github.com/frej/fast-export) by Frej Drejhammar.
 
 This library allows you to wrap file system operations in transactions like this:
 
@@ -27,14 +30,17 @@ Support the following file operations in transactions:
 * Copy
 * CreateDirectory
 * DeleteDirectory
-* DeleteFile
+* Delete
+* DeleteDirectory
 * Move
 * Snapshot
+* WriteAllBytes
 * WriteAllText
 
 This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-file-manager/).
 
-Feedback is very welcome. Also if you have any suggestions for enhancements or bug reports please use the discussions area. Better yet, join this project and contribute yourself.
+Feedback is welcome. Also if you have any suggestions for enhancements or bug reports please use the
+discussions area. Better yet, join this project and contribute yourself.
 
 This library is also available from [NuGet](https://www.nuget.org/packages/TxFileManager)
 
@@ -45,9 +51,11 @@ In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A
 
 ## Can I reuse instances of TxFileManager?
 
-It's not expensive to create new instances of TxFileManager as eeded. There's a bit of overhead (like creating instances of any small class) but not much.
+It's not expensive to create new instances of TxFileManager as eeded. There's a bit of overhead (like
+creating instances of any small class) but not much.
 
-On the other hand, you can also re-use the same instance for multiple transactions, even nested transactions.
+On the other hand, you can also re-use the same instance for multiple transactions, even nested
+transactions.
 
 ## Is TxFileManager Thread Safe?
 
@@ -59,4 +67,4 @@ Regardless of the specified IsolationLevel, the effective IsolationLevel is Read
 
 ## What does the release roadmap look like?
 
-I am working on upgrading the library to the latest .NET Framework and also to make sure it works with .NET Core on Linux. Next will be some enhancement requests (like adding support for copyping/moving/deleting directories) that were pending from the CodePlex project.
+I am working on version 1.4 with a few bug fixes and enhancements. See the Issues list.
