@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -450,7 +451,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             // Start each test in its own thread and repeat for a few interations
             const int iterations = 25;
             IList<Thread> threads = new List<Thread>();
-            SynchronizedCollection<Exception> exceptions = new SynchronizedCollection<Exception>();
+            BlockingCollection<Exception> exceptions = new BlockingCollection<Exception>();
 
             Action[] actions = new Action[] { CanAppendAllText, AppendAllTextCanRollback, CanCopy, CanCopyAndRollback,
                 CanCreateDirectory, CanCreateDirectoryAndRollback, CanDeleteFile, CanDeleteFileAndRollback, CanMoveFile,
@@ -475,7 +476,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.Equal(iterations, exceptions.Count);
         }
 
-        private static void Launch(Action action, SynchronizedCollection<Exception> exceptions)
+        private static void Launch(Action action, BlockingCollection<Exception> exceptions)
         {
             try
             {
