@@ -47,6 +47,10 @@ This library is also available from [NuGet](https://www.nuget.org/packages/TxFil
 # Frequently Ased Questions
 ## How do I run tests?
 
+In a PowerShell/Command window:
+* cd <path to ChinhDo.Transactions.FileManagerTest> folder
+* dotnet test
+
 In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
 
 ## Can I reuse instances of TxFileManager?
@@ -68,3 +72,6 @@ Regardless of the specified IsolationLevel, the effective IsolationLevel is Read
 ## What does the release roadmap look like?
 
 I am working on version 1.4 with a few bug fixes and enhancements. See the Issues list.
+
+## TODO's
+* Licencing/Expression in Package
