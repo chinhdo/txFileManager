@@ -1,10 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.4.0-beta01</Version>
     <PackageId>TxFileManager</PackageId>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.4.0-beta02</Version>
+    <title>.NET Transactional File Manager - include disk IO operations in your transactions</title>
     <Authors>chinhdo</Authors>
+    <owners>chinhdo</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <Description>
       Transactional File Manager is a .NET API that supports including file system operations such as file copy, move, delete, append, etc. in a transaction. It's an implementation of System.Transaction.IEnlistmentNotification (works with System.Transactions.TransactionScope). See GitHub project for more info: https://github.com/chinhdo/txFileManager
     </Description>
@@ -14,9 +17,12 @@
     <PackageProjectUrl>https://github.com/chinhdo/txFileManager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chinhdo/txFileManager.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>- Convert to xUnit tests
-- Add support for custom temp paths to address issues with file/dir operations accross filesystems
-- Target .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      * Convert to xUnit tests
+      * Add support for custom temp paths to address issues with file/dir operations accross filesystems
+      * Fix for resource leak in TxFileManager._txEnlistment
+      * Target .NET Standard 2.0
+    </PackageReleaseNotes>
     <AssemblyVersion>1.4.0.35</AssemblyVersion>
     <FileVersion>1.4.0.35</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,4 +36,5 @@
 <!-- Notes
 * Push package
 dotnet nuget push .\bin\Debug\TxFileManager.1.4.1-beta.nupkg -k <key> -s https://api.nuget.org/v3/index.json
+nuget pack ChinhDo.Transactions.FileManager.nuspec  -Properties Configuration=Release
 -->

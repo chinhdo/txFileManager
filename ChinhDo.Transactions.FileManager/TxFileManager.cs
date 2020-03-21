@@ -22,7 +22,7 @@ namespace ChinhDo.Transactions
         ///<param name="tempPath">Path to temp directory.</param>
         public TxFileManager(string tempPath)
         {
-            this._tempPath = tempPath;
+            this._tempPath = Path.Combine(tempPath, "TxFileMgr-fc4eed76ee9b");
             Directory.CreateDirectory(tempPath); // This will reate folder if neccessary
         }
 
