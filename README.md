@@ -48,7 +48,6 @@ This library is available as a [NuGet](https://www.nuget.org/packages/TxFileMana
 ## How do I run tests?
 
 In a PowerShell/Command window:
-* cd <path to ChinhDo.Transactions.FileManagerTest> folder
 * dotnet test
 
 In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)

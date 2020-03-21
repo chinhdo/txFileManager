@@ -2,6 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.4.1-beta01</Version>
+    <PackageId>TxFileManager</PackageId>
+    <Authors>chinhdo</Authors>
+    <Description>
+      Transactional File Manager is a .NET API that supports including file system operations such as file copy, move, delete, append, etc. in a transaction. It's an implementation of System.Transaction.IEnlistmentNotification (works with System.Transactions.TransactionScope). See GitHub project for more info: https://github.com/chinhdo/txFileManager
+    </Description>
+    <Copyright>(c) 2016-2020 Chinh Do</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>TransactionScope,File,Directory,Transaction,NET,dotnet</PackageTags>
+    <PackageProjectUrl>https://github.com/chinhdo/txFileManager</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/chinhdo/txFileManager.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <AssemblyVersion>1.4.0.34</AssemblyVersion>
+    <FileVersion>1.4.0.34</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage></NeutralLanguage>
+    <Company />
+    <Product>.NET Transactional File Manager - include disk IO operations in your transactions</Product>
   </PropertyGroup>
 
 </Project>
+
+<!-- Notes
+* Push package
+dotnet nuget push .\bin\Debug\TxFileManager.1.4.1-beta.nupkg -k <key> -s https://api.nuget.org/v3/index.json
+-->
