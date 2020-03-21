@@ -1,10 +1,7 @@
 # Summary
-.NET Transactional File Manager is a .NET API that supports including file system operations such
+.NET Transactional File Manager is a .NET library that supports including file system operations such
 as file copy, move, delete, append, etc. in a transaction. It's an implementation of
 System.Transaction.IEnlistmentNotification.
-
-This project was originally on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and
-was migrated to GitHub using [fast-export](https://github.com/frej/fast-export) by Frej Drejhammar.
 
 This library allows you to wrap file system operations in transactions like this:
 
@@ -37,12 +34,13 @@ Support the following file operations in transactions:
 * WriteAllBytes
 * WriteAllText
 
-This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-file-manager/).
-
 Feedback is welcome. Also if you have any suggestions for enhancements or bug reports please use the
 discussions area. Better yet, join this project and contribute yourself.
 
 This library is available as a [NuGet](https://www.nuget.org/packages/TxFileManager) package.
+
+This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-file-manager/). It was hosted on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and migrated to GitHub in 3/2020.
+
 
 # Frequently Ased Questions
 ## How do I run tests?
@@ -51,6 +49,16 @@ In a PowerShell/Command window:
 * dotnet test
 
 In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
+
+## How do I reference this library?
+
+You can run this command:
+
+```
+dotnet add package TxFileManager --version <version>
+```
+
+Or Use Visual Studio's Manage Nuget Packages to add. Search for "TxFileManager".
 
 ## Can I reuse instances of TxFileManager?
 
@@ -67,12 +75,3 @@ Yes - it's been tested for that.
 ## Which IsolationLevel's are supported?
 
 Regardless of the specified IsolationLevel, the effective IsolationLevel is ReadUncommitted.
-
-## What does the release roadmap look like?
-
-I am working on version 1.4 with a few bug fixes and enhancements. See the Issues list.
-
-## TODO's
-* Licencing/Expression in Package
-* Use IFileManager in tests and ensure all ops are in IFileManager
-* Stress test - long running test for leaks
