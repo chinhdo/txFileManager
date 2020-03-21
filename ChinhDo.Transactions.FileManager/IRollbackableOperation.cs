@@ -5,14 +5,10 @@
     /// </summary>
     interface IRollbackableOperation
     {
-        /// <summary>
-        /// Executes the operation.
-        /// </summary>
+        /// <summary>Executes the operation.</summary>
         void Execute();
 
-        /// <summary>
-        /// Rolls back the operation, restores the original state.
-        /// </summary>
+        /// <summary>Rolls back the operation, restores the original state.</summary>
         void Rollback();
     }
 }

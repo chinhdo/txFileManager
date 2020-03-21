@@ -42,7 +42,7 @@ This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-
 Feedback is welcome. Also if you have any suggestions for enhancements or bug reports please use the
 discussions area. Better yet, join this project and contribute yourself.
 
-This library is also available from [NuGet](https://www.nuget.org/packages/TxFileManager)
+This library is available as a [NuGet](https://www.nuget.org/packages/TxFileManager) package.
 
 # Frequently Ased Questions
 ## How do I run tests?
@@ -75,3 +75,5 @@ I am working on version 1.4 with a few bug fixes and enhancements. See the Issue
 
 ## TODO's
 * Licencing/Expression in Package
+* Use IFileManager in tests and ensure all ops are in IFileManager
+* Stress test - long running test for leaks

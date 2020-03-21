@@ -11,12 +11,18 @@ namespace ChinhDo.Transactions
     /// </summary>
     public class TxFileManager : IFileManager
     {
-        /// <summary>
-        /// Initializes the <see cref="TxFileManager"/> class.
-        /// </summary>
-        public TxFileManager()
+        /// <summary>Create a new instance of <see cref="TxFileManager"/> class. Feel free to create new instances or re-use existing instances./// </summary>
+        /// ///<param name="tempPath">Path to temp directory.</param>
+        public TxFileManager() : this(Path.GetTempPath())
         {
-            FileUtils.EnsureTempFolderExists();
+            
+        }
+
+        /// <summary>Create a new instance of <see cref="TxFileManager"/> class. Feel free to create new instances or re-use existing instances./// </summary>
+        ///<param name="tempPath">Path to temp directory.</param>
+        public TxFileManager(string tempPath)
+        {
+            Directory.CreateDirectory(tempPath); // This will reate folder if neccessary
         }
 
         #region IFileOperations
@@ -28,7 +34,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new AppendAllTextOperation(path, contents));
+                EnlistOperation(new AppendAllTextOperation(this.GetTempPath(), path, contents));
             }
             else
             {
@@ -44,7 +50,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new CopyOperation(sourceFileName, destFileName, overwrite));
+                EnlistOperation(new CopyOperation(this.GetTempPath(), sourceFileName, destFileName, overwrite));
             }
             else
             {
@@ -72,7 +78,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new DeleteFileOperation(path));
+                EnlistOperation(new DeleteFileOperation(this.GetTempPath(), path));
             }
             else
             {
@@ -86,7 +92,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new DeleteDirectoryOperation(path));
+                EnlistOperation(new DeleteDirectoryOperation(tempPath, path));
             }
             else
             {
@@ -101,7 +107,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new MoveOperation(srcFileName, destFileName));
+                EnlistOperation(new MoveFileOperation(srcFileName, destFileName));
             }
             else
             {
@@ -115,7 +121,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new SnapshotOperation(fileName));
+                EnlistOperation(new SnapshotOperation(this.GetTempPath(), fileName));
             }
         }
 
@@ -126,7 +132,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new WriteAllTextOperation(path, contents));
+                EnlistOperation(new WriteAllTextOperation(this.GetTempPath(), path, contents));
             }
             else
             {
@@ -141,7 +147,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new WriteAllBytesOperation(path, contents));
+                EnlistOperation(new WriteAllBytesOperation(this.GetTempPath(), path, contents));
             }
             else
             {
@@ -197,11 +203,11 @@ namespace ChinhDo.Transactions
         /// <param name="extension">File extension (with the dot).</param>
         public string GetTempFileName(string extension)
         {
-            string retVal = FileUtils.GetTempFileName(extension);
-
-            Snapshot(retVal);
-
-            return retVal;
+            Guid g = Guid.NewGuid();
+            string tempFolder = GetTempPath();
+            string ret = Path.Combine(tempFolder, g.ToString().Substring(0, 16)) + extension;
+            Snapshot(ret);
+            return ret;
         }
 
         /// <summary>Creates a temporary file name. File is not automatically created.</summary>
@@ -214,7 +220,7 @@ namespace ChinhDo.Transactions
         /// <returns>The path to the newly created temporary directory.</returns>
         public string GetTempDirectory()
         {
-            return GetTempDirectory(Path.GetTempPath(), string.Empty);
+            return GetTempDirectory(GetTempPath(), string.Empty);
         }
 
         /// <summary>Gets a temporary directory.</summary>
@@ -226,9 +232,35 @@ namespace ChinhDo.Transactions
             Guid g = Guid.NewGuid();
             string dirName = Path.Combine(parentDirectory, prefix + g.ToString().Substring(0, 16));
 
+            // TODO SnapShot Directory
             CreateDirectory(dirName);
 
             return dirName;
+        }
+
+        /// <summary>
+        /// Gets the folder where we should store temporary files and folders. Override this if you want your own impl.
+        /// </summary>
+        /// <returns></returns>
+        public string GetTempPath()
+        {
+            if (!string.IsNullOrEmpty(this.tempPath))
+            {
+                return this.tempPath;
+            }
+            else
+            {
+                return Path.GetTempPath();
+            }
+        }
+
+        /// <summary>
+        /// Sets and override the default temp path logic. This can be used to use a temp path on the same filesytem
+        /// where your files/directories reside to prevent IO operations accross filesystem boundaries.
+        /// </summary>
+        public void SetTempPath(string value)
+        {
+            this.tempPath = value;
         }
 
         #region Private
@@ -236,8 +268,8 @@ namespace ChinhDo.Transactions
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
         [ThreadStatic]
         private static Dictionary<string, TxEnlistment> _enlistments;
-
         private static readonly object _enlistmentsLock = new object();
+        private string tempPath = null;
 
         private static bool IsInTransaction()
         {

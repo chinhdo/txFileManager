@@ -10,7 +10,7 @@ namespace ChinhDo.Transactions.TestConsoleApp1
         {
             Console.WriteLine("Test .NET Core app");
 
-            TxFileManager fm = new TxFileManager();
+            IFileManager fm = new TxFileManager();
 
             for (int i=0; i<10; i++)
             {
