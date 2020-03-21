@@ -492,6 +492,20 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Other
 
+        [Fact] public void ItRemovesCompletedEnlistments()
+        {
+            string f1 = GetTempPathName();
+            const string contents = "123";
+
+            using (TransactionScope scope1 = new TransactionScope())
+            {
+                _target.AppendAllText(f1, contents);
+                scope1.Complete();
+            }
+
+            Assert.Equal(0, TxFileManager.GetEnlistmentCount());
+        }
+
         [Fact]
         public void CanSetCustomTempPath()
         {            
@@ -520,6 +534,8 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #endregion
 
+        #region Private
+
         private string GetTempPathName(string extension = "")
         {
             string tempFile = _target.GetTempFileName(extension);
@@ -531,5 +547,8 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             throw new Exception("Test.");
         }
+
+        #endregion
+
     }
 }
