@@ -5,16 +5,15 @@ namespace ChinhDo.Transactions
     /// <summary>
     /// Creates all directories in the specified path.
     /// </summary>
-    sealed class CreateDirectoryOperation : IRollbackableOperation
+    sealed class CreateDirectoryOperation : IoOperation, IRollbackableOperation
     {
         private readonly string path;
         private string backupPath;
 
-        /// <summary>
-        /// Instantiates the class.
-        /// </summary>
+        /// <summary>Instantiates the class.</summary>
+        /// <param name="tempPath">Path to temp directory.</param>
         /// <param name="path">The directory path to create.</param>
-        public CreateDirectoryOperation(string path)
+        public CreateDirectoryOperation(string tempPath, string path): base(tempPath)
         {
             this.path = path;
         }

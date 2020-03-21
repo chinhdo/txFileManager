@@ -22,6 +22,7 @@ namespace ChinhDo.Transactions
         ///<param name="tempPath">Path to temp directory.</param>
         public TxFileManager(string tempPath)
         {
+            this._tempPath = tempPath;
             Directory.CreateDirectory(tempPath); // This will reate folder if neccessary
         }
 
@@ -64,7 +65,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new CreateDirectoryOperation(path));
+                EnlistOperation(new CreateDirectoryOperation(GetTempPath(), path));
             }
             else
             {
@@ -92,7 +93,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new DeleteDirectoryOperation(tempPath, path));
+                EnlistOperation(new DeleteDirectoryOperation(GetTempPath(), path));
             }
             else
             {
@@ -107,7 +108,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new MoveFileOperation(srcFileName, destFileName));
+                EnlistOperation(new MoveFileOperation(this.GetTempPath(), srcFileName, destFileName));
             }
             else
             {
@@ -244,23 +245,7 @@ namespace ChinhDo.Transactions
         /// <returns></returns>
         public string GetTempPath()
         {
-            if (!string.IsNullOrEmpty(this.tempPath))
-            {
-                return this.tempPath;
-            }
-            else
-            {
-                return Path.GetTempPath();
-            }
-        }
-
-        /// <summary>
-        /// Sets and override the default temp path logic. This can be used to use a temp path on the same filesytem
-        /// where your files/directories reside to prevent IO operations accross filesystem boundaries.
-        /// </summary>
-        public void SetTempPath(string value)
-        {
-            this.tempPath = value;
+            return this._tempPath;
         }
 
         #region Private
@@ -269,7 +254,7 @@ namespace ChinhDo.Transactions
         [ThreadStatic]
         private static Dictionary<string, TxEnlistment> _enlistments;
         private static readonly object _enlistmentsLock = new object();
-        private string tempPath = null;
+        private string _tempPath = null;
 
         private static bool IsInTransaction()
         {

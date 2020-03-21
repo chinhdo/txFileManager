@@ -39,11 +39,5 @@ namespace ChinhDo.Transactions
         /// <param name="prefix">The prefix of the directory name.</param>
         /// <returns>Path to the temporary directory. The temporary directory is created automatically.</returns>
         string GetTempDirectory(string parentDirectory, string prefix);
-
-        /// <summary>
-        /// Sets and override the default temp path logic. This can be used to use a temp path on the same filesytem
-        /// where your files/directories reside to prevent IO operations accross filesystem boundaries.
-        /// </summary>
-        void SetTempPath(string value);
     }
 }

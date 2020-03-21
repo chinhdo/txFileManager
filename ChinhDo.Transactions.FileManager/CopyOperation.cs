@@ -9,8 +9,8 @@ namespace ChinhDo.Transactions
         private readonly bool overwrite;
 
         /// <summary>Instantiates the class.</summary>
-        /// <param name="sourceFileName">The file to copy.</param>
         /// <param name="tempPath">Path to temp directory.</param>
+        /// <param name="sourceFileName">The file to copy.</param>
         /// <param name="destFileName">The name of the destination file.</param>
         /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
         public CopyOperation(string tempPath, string sourceFileName, string destFileName, bool overwrite)

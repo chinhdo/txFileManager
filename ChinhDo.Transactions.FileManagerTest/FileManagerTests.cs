@@ -504,11 +504,11 @@ namespace ChinhDo.Transactions.FileManagerTest
             string f1 = fm.GetTempFileName();
             Assert.DoesNotContain(myTempPath, f1);
 
-            fm.SetTempPath(myTempPath);
-            string d2 = fm.GetTempDirectory();
+            IFileManager fm2 = new TxFileManager(myTempPath);
+            string d2 = fm2.GetTempDirectory();
             Assert.Contains(myTempPath, d2);
 
-            string f2 = fm.GetTempFileName();
+            string f2 = fm2.GetTempFileName();
             Assert.Contains(myTempPath, f2);
 
             Directory.Delete(d1);
