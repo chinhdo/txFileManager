@@ -7,14 +7,17 @@ namespace ChinhDo.Transactions
     /// Class that contains common code for those rollbackable file operations which need
     /// to backup a single file and restore it when Rollback() is called.
     /// </summary>
-    abstract class SingleFileOperation : IRollbackableOperation, IDisposable
+    abstract class SingleFileOperation : IoOperation, IRollbackableOperation, IDisposable
     {
         protected readonly string path;
         protected string backupPath;
         // tracks whether Dispose has been called
         private bool disposed;
 
-        public SingleFileOperation(string path)
+        /// <summary>Constructor</summary>
+        /// <param name="tempPath">Path to temp directory.</param>
+        /// <param name="path">Path to the file</param>
+        public SingleFileOperation(string tempPath, string path) : base(tempPath)
         {
             this.path = path;
         }

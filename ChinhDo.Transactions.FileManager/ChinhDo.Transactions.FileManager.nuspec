@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>TxFileManager</id>
+    <version>$version$</version>
+    <title>.NET Transactional File Manager - include disk IO operations in your transactions</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/chinhdo/txFileManager</projectUrl>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <releaseNotes>TODO.</releaseNotes>
+    <copyright>Copyright 2016-2020 Chinh Do</copyright>
+    <tags>TransactionScope File Directory Transaction Transactions c# dotnet .NET</tags>
+    <repository type="git" url="https://github.com/chinhdo/txFileManager"/>
+    <!-- TODO add branch/commit <repository type="git" url="https://github.com/chinhdo/txFileManager" branch="dev" commit="e1c65e4524cd70ee6e22abe33e6cb6ec73938cb3" /> -->
+  </metadata>
+  <files>
+    <file src="..\readme.md" target="" />
+    <!-- <file src="**\*.*" target="" /> -->
+  </files>
+</package>

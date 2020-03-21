@@ -9,13 +9,11 @@ namespace ChinhDo.Transactions
     {
         private readonly string contents;
 
-        /// <summary>
-        /// Instantiates the class.
-        /// </summary>
+        /// <summary>Instantiates the class.</summary>
+        /// <param name="tempPath">Path to temp directory.</param>
         /// <param name="path">The file to append the string to.</param>
         /// <param name="contents">The string to append to the file.</param>
-        public AppendAllTextOperation(string path, string contents)
-            : base(path)
+        public AppendAllTextOperation(string tempPath, string path, string contents) : base(tempPath, path)
         {
             this.contents = contents;
         }
@@ -24,7 +22,7 @@ namespace ChinhDo.Transactions
         {
             if (File.Exists(path))
             {
-                string temp = FileUtils.GetTempFileName(Path.GetExtension(path));
+                string temp = GetTempPathName(Path.GetExtension(path));
                 File.Copy(path, temp);
                 backupPath = temp;
             }

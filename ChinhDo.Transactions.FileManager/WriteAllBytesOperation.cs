@@ -9,13 +9,11 @@ namespace ChinhDo.Transactions
     {
         private readonly byte[] contents;
 
-        /// <summary>
-        /// Instantiates the class.
-        /// </summary>
+        /// <summary>Instantiates the class.</summary>
         /// <param name="path">The file to write to.</param>
         /// <param name="contents">The string to write to the file.</param>
-        public WriteAllBytesOperation(string path, byte[] contents)
-            : base(path)
+        /// <param name="tempPath">Path to temp directory.</param>
+        public WriteAllBytesOperation(string tempPath, string path, byte[] contents) : base(tempPath, path)
         {
             this.contents = contents;
         }
@@ -24,7 +22,7 @@ namespace ChinhDo.Transactions
         {
             if (File.Exists(path))
             {
-                string temp = FileUtils.GetTempFileName(Path.GetExtension(path));
+                string temp = GetTempPathName(Path.GetExtension(path));
                 File.Copy(path, temp);
                 backupPath = temp;
             }
