@@ -22,7 +22,7 @@ namespace ChinhDo.Transactions
         ///<param name="tempPath">Path to temp directory.</param>
         public TxFileManager(string tempPath)
         {
-            this._tempPath = tempPath;
+            this._tempPath = Path.Combine(tempPath, "TxFileMgr-fc4eed76ee9b");
             Directory.CreateDirectory(tempPath); // This will reate folder if neccessary
         }
 
@@ -248,12 +248,19 @@ namespace ChinhDo.Transactions
             return this._tempPath;
         }
 
+        /// <summary>Get the count of _enlistments</summary>
+        /// <returns></returns>
+        public static int GetEnlistmentCount()
+        {
+            return _enlistments.Count;
+        }
+
         #region Private
 
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
         [ThreadStatic]
-        private static Dictionary<string, TxEnlistment> _enlistments;
-        private static readonly object _enlistmentsLock = new object();
+        internal static Dictionary<string, TxEnlistment> _enlistments;
+        internal static readonly object _enlistmentsLock = new object();
         private string _tempPath = null;
 
         private static bool IsInTransaction()
@@ -278,6 +285,7 @@ namespace ChinhDo.Transactions
                     enlistment = new TxEnlistment(tx);
                     _enlistments.Add(tx.TransactionInformation.LocalIdentifier, enlistment);
                 }
+
                 enlistment.EnlistOperation(operation);
             }
         }

@@ -165,12 +165,17 @@ namespace ChinhDo.Transactions.FileManagerTest
         public void CanRollbackNestedDirectories()
         {
             string baseDir = GetTempPathName();
-            string nested1 = Path.Combine(baseDir, "level1");
+            Directory.CreateDirectory(baseDir);
+            string nested = Path.Combine(baseDir, "level1");
+            nested = Path.Combine(nested, "level2");
             using (new TransactionScope())
             {
-                _target.CreateDirectory(nested1);
+                _target.CreateDirectory(nested);
+                Assert.True(Directory.Exists(nested));
             }
-            Assert.False(Directory.Exists(baseDir), baseDir + " should not exist.");
+            Assert.False(Directory.Exists(nested), nested + " should not exists.");
+            Assert.True(Directory.Exists(baseDir), baseDir + " should exist.");
+            Directory.Delete(baseDir);
         }
 
         [Fact]
@@ -492,6 +497,20 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Other
 
+        [Fact] public void ItRemovesCompletedEnlistments()
+        {
+            string f1 = GetTempPathName();
+            const string contents = "123";
+
+            using (TransactionScope scope1 = new TransactionScope())
+            {
+                _target.AppendAllText(f1, contents);
+                scope1.Complete();
+            }
+
+            Assert.Equal(0, TxFileManager.GetEnlistmentCount());
+        }
+
         [Fact]
         public void CanSetCustomTempPath()
         {            
@@ -520,6 +539,8 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #endregion
 
+        #region Private
+
         private string GetTempPathName(string extension = "")
         {
             string tempFile = _target.GetTempFileName(extension);
@@ -531,5 +552,8 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             throw new Exception("Test.");
         }
+
+        #endregion
+
     }
 }
