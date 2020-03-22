@@ -39,4 +39,5 @@ nuget pack -build -Properties Configuration=Release
 
 * Push package (don't use the file in the project folder - that one is missing a bunch of attrs for some reason)
 dotnet nuget push .\bin\release\TxFileManager.1.4.0-beta1.nupkg -k <key> -s https://api.nuget.org/v3/index.json
+
 -->

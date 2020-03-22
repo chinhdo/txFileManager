@@ -46,7 +46,9 @@ This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-
 ## How do I run tests?
 
 In a PowerShell/Command window:
-* dotnet test
+```
+dotnet test
+```
 
 In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
 
