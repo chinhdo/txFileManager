@@ -517,17 +517,17 @@ namespace ChinhDo.Transactions.FileManagerTest
             IFileManager fm = new TxFileManager();
             string myTempPath = "\\temp-f8417ba5";
 
-            string d1 = fm.GetTempDirectory();
+            string d1 = fm.CreateTempDirectory();
             Assert.DoesNotContain(myTempPath, d1);
 
-            string f1 = fm.GetTempFileName();
+            string f1 = fm.CreateTempFileName();
             Assert.DoesNotContain(myTempPath, f1);
 
             IFileManager fm2 = new TxFileManager(myTempPath);
-            string d2 = fm2.GetTempDirectory();
+            string d2 = fm2.CreateTempDirectory();
             Assert.Contains(myTempPath, d2);
 
-            string f2 = fm2.GetTempFileName();
+            string f2 = fm2.CreateTempFileName();
             Assert.Contains(myTempPath, f2);
 
             Directory.Delete(d1);
@@ -543,7 +543,7 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         private string GetTempPathName(string extension = "")
         {
-            string tempFile = _target.GetTempFileName(extension);
+            string tempFile = _target.CreateTempFileName(extension);
             _tempPaths.Add(tempFile);
             return tempFile;
         }

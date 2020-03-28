@@ -23,14 +23,11 @@ namespace ChinhDo.Transactions
         public TxFileManager(string tempPath)
         {
             this._tempPath = Path.Combine(tempPath, "TxFileMgr-fc4eed76ee9b");
-            Directory.CreateDirectory(tempPath); // This will reate folder if neccessary
+            Directory.CreateDirectory(_tempPath); // This will create folder if neccessary
         }
 
         #region IFileOperations
 
-        /// <summary>Appends the specified string the file, creating the file if it doesn't already exist.</summary>
-        /// <param name="path">The file to append the string to.</param>
-        /// <param name="contents">The string to append to the file.</param>
         public void AppendAllText(string path, string contents)
         {
             if (IsInTransaction())
@@ -43,10 +40,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.</summary>
-        /// <param name="sourceFileName">The file to copy.</param>
-        /// <param name="destFileName">The name of the destination file.</param>
-        /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
         public void Copy(string sourceFileName, string destFileName, bool overwrite)
         {
             if (IsInTransaction())
@@ -59,8 +52,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Creates all directories in the specified path.</summary>
-        /// <param name="path">The directory path to create.</param>
         public void CreateDirectory(string path)
         {
             if (IsInTransaction())
@@ -73,8 +64,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Deletes the specified file. An exception is not thrown if the file does not exist.</summary>
-        /// <param name="path">The file to be deleted.</param>
         public void Delete(string path)
         {
             if (IsInTransaction())
@@ -87,8 +76,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Deletes the specified directory and all its contents. An exception is not thrown if the directory does not exist.</summary>
-        /// <param name="path">The directory to be deleted.</param>
         public void DeleteDirectory(string path)
         {
             if (IsInTransaction())
@@ -101,9 +88,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Moves the specified file to a new location.</summary>
-        /// <param name="srcFileName">The name of the file to move.</param>
-        /// <param name="destFileName">The new path for the file.</param>
         public void Move(string srcFileName, string destFileName)
         {
             if (IsInTransaction())
@@ -116,8 +100,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.</summary>
-        /// <param name="fileName">The file to take a snapshot for.</param>
         public void Snapshot(string fileName)
         {
             if (IsInTransaction())
@@ -126,9 +108,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
-        /// <param name="path">The file to write to.</param>
-        /// <param name="contents">The string to write to the file.</param>
         public void WriteAllText(string path, string contents)
         {
             if (IsInTransaction())
@@ -141,9 +120,6 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Creates a file, write the specified <paramref name="contents"/> to the file.</summary>
-        /// <param name="path">The file to write to.</param>
-        /// <param name="contents">The bytes to write to the file.</param>
         public void WriteAllBytes(string path, byte[] contents)
         {
             if (IsInTransaction())
@@ -200,9 +176,7 @@ namespace ChinhDo.Transactions
             }
         }
 
-        /// <summary>Creates a temporary file name. File is not automatically created.</summary>
-        /// <param name="extension">File extension (with the dot).</param>
-        public string GetTempFileName(string extension)
+        public string CreateTempFileName(string extension)
         {
             Guid g = Guid.NewGuid();
             string tempFolder = GetTempPath();
@@ -211,24 +185,17 @@ namespace ChinhDo.Transactions
             return ret;
         }
 
-        /// <summary>Creates a temporary file name. File is not automatically created.</summary>
-        public string GetTempFileName()
+        public string CreateTempFileName()
         {
-            return GetTempFileName(".tmp");
+            return CreateTempFileName(".tmp");
         }
 
-        /// <summary>Gets a temporary directory.</summary>
-        /// <returns>The path to the newly created temporary directory.</returns>
-        public string GetTempDirectory()
+        public string CreateTempDirectory()
         {
-            return GetTempDirectory(GetTempPath(), string.Empty);
+            return CreateTempDirectory(GetTempPath(), string.Empty);
         }
 
-        /// <summary>Gets a temporary directory.</summary>
-        /// <param name="parentDirectory">The parent directory.</param>
-        /// <param name="prefix">The prefix of the directory name.</param>
-        /// <returns>Path to the temporary directory. The temporary directory is created automatically.</returns>
-        public string GetTempDirectory(string parentDirectory, string prefix)
+        public string CreateTempDirectory(string parentDirectory, string prefix)
         {
             Guid g = Guid.NewGuid();
             string dirName = Path.Combine(parentDirectory, prefix + g.ToString().Substring(0, 16));
