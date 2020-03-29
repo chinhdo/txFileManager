@@ -1,4 +1,4 @@
-name: Build (.NET Core/Ubuntu)
+name: Build (Windows)
 
 on: push
 
