@@ -1,11 +1,11 @@
-name: .NET Core
+name: Build (.NET Core/Ubuntu)
 
 on: push
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-lates
 
     steps:
     - uses: actions/checkout@v2
