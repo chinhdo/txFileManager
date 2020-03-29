@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -339,32 +340,42 @@ namespace ChinhDo.Transactions.FileManagerTest
         [Fact]
         public void ThrowExceptionIfCannotRollback()
         {
-            string f1 = GetTempPathName(".txt");
-            string f2 = GetTempPathName(".txt");
+            // Run this test on Windows only
+            // This test doesn't work on Ubuntu/Unix because setting file attribute to read-only does not 
+            // prevent this code from deleting the file
 
-            try
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Exception ex = Assert.Throws<TransactionException>(() =>
+                string f1 = GetTempPathName(".txt");
+                string f2 = GetTempPathName(".txt");
+
+                try
                 {
-                    using (TransactionScope scope1 = new TransactionScope())
+                    Exception ex = Assert.Throws<TransactionException>(() =>
                     {
-                        _target.WriteAllText(f1, "Test.");
-                        _target.WriteAllText(f2, "Test.");
+                        using (TransactionScope scope1 = new TransactionScope())
+                        {
+                            _target.WriteAllText(f1, "Test.");
+                            _target.WriteAllText(f2, "Test.");
 
-                        FileInfo fi1 = new FileInfo(f1);
-                        fi1.Attributes = FileAttributes.ReadOnly;
+                            FileInfo fi1 = new FileInfo(f1);
+                            fi1.Attributes = FileAttributes.ReadOnly;
 
-                        // rollback
+                            // rollback
+                        }
+                    });
+
+                    Assert.Contains("Failed to roll back.", ex.Message);
+                }
+                finally
+                {
+                    FileInfo fi1 = new FileInfo(f1);
+                    if (fi1.Exists)
+                    {
+                        fi1.Attributes = FileAttributes.Normal;
+                        File.Delete(f1);
                     }
-                });
-
-                Assert.Contains("Failed to roll back.", ex.Message);
-            }
-            finally
-            {
-                FileInfo fi1 = new FileInfo(f1);
-                fi1.Attributes = FileAttributes.Normal;
-                File.Delete(f1);
+                }
             }
         }
 
