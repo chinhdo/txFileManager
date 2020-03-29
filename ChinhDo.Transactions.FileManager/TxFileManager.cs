@@ -15,7 +15,7 @@ namespace ChinhDo.Transactions
         /// ///<param name="tempPath">Path to temp directory.</param>
         public TxFileManager() : this(Path.GetTempPath())
         {
-            
+
         }
 
         /// <summary>Create a new instance of <see cref="TxFileManager"/> class. Feel free to create new instances or re-use existing instances./// </summary>

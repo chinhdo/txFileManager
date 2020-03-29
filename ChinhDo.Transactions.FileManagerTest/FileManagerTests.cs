@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Transactions;
 using Xunit;
 
 namespace ChinhDo.Transactions.FileManagerTest
 {
-    public class FileManagerTests : IDisposable
+    public sealed class FileManagerTests : IDisposable
     {
         private readonly IFileManager _target;
         private IList<string> _tempPaths;
@@ -73,7 +69,7 @@ namespace ChinhDo.Transactions.FileManagerTest
                 using (FileStream fs = File.Open(f1, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
                 {
                     Exception ex = Assert.Throws<IOException>(() => _target.AppendAllText(f1, contents));
-                    Assert.Contains("The process cannot access the file", ex.Message);
+                    Assert.Contains("The process cannot access the file", ex.Message, StringComparison.CurrentCulture);
                 }
             }
         }
@@ -365,7 +361,7 @@ namespace ChinhDo.Transactions.FileManagerTest
                         }
                     });
 
-                    Assert.Contains("Failed to roll back.", ex.Message);
+                    Assert.Contains("Failed to roll back.", ex.Message, StringComparison.CurrentCulture);
                 }
                 finally
                 {
@@ -508,7 +504,8 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         #region Other
 
-        [Fact] public void ItRemovesCompletedEnlistments()
+        [Fact]
+        public void ItRemovesCompletedEnlistments()
         {
             string f1 = GetTempPathName();
             const string contents = "123";
@@ -524,22 +521,22 @@ namespace ChinhDo.Transactions.FileManagerTest
 
         [Fact]
         public void CanSetCustomTempPath()
-        {            
+        {
             IFileManager fm = new TxFileManager();
             string myTempPath = "\\temp-f8417ba5";
 
             string d1 = fm.CreateTempDirectory();
-            Assert.DoesNotContain(myTempPath, d1);
+            Assert.DoesNotContain(myTempPath, d1, StringComparison.CurrentCulture);
 
             string f1 = fm.CreateTempFileName();
-            Assert.DoesNotContain(myTempPath, f1);
+            Assert.DoesNotContain(myTempPath, f1, StringComparison.CurrentCulture);
 
             IFileManager fm2 = new TxFileManager(myTempPath);
             string d2 = fm2.CreateTempDirectory();
-            Assert.Contains(myTempPath, d2);
+            Assert.Contains(myTempPath, d2, StringComparison.CurrentCulture);
 
             string f2 = fm2.CreateTempFileName();
-            Assert.Contains(myTempPath, f2);
+            Assert.Contains(myTempPath, f2, StringComparison.CurrentCulture);
 
             Directory.Delete(d1);
             Directory.Delete(d2);

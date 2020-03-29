@@ -113,3 +113,5 @@ IFileManager fm = new TxFileManager(myTempPath);
 * Target .NET Standard 2.0
 * Additional testing for .NET Core on Ubuntu
 * Additional stress testing both on Windows and Ubuntu
+* Created Github workflow to automatically build/test on ubuntu
+* Added FxCop static analysis

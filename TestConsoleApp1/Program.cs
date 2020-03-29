@@ -30,7 +30,7 @@ namespace ChinhDo.Transactions.TestConsoleApp1
 
                 string[] directories = Directory.GetDirectories(tempDir);
                 string[] files = Directory.GetFiles(tempDir);
-                if (directories.Length> 0 || files.Length > 0)
+                if (directories.Length > 0 || files.Length > 0)
                 {
                     Console.WriteLine(string.Format("ERROR  Please ensure temp path {0} has no children before running this test.", tempDir));
                     return;

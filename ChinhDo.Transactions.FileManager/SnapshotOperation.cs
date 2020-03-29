@@ -5,7 +5,7 @@ namespace ChinhDo.Transactions
     /// <summary>
     /// Rollbackable operation which takes a snapshot of a file. The snapshot is used to rollback the file later if needed.
     /// </summary>
-    sealed class SnapshotOperation: SingleFileOperation
+    sealed class SnapshotOperation : SingleFileOperation
     {
         /// <summary>Instantiates the class.</summary>
         /// <param name="tempPath">Path to temp directory.</param>
