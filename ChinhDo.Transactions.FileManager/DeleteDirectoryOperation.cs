@@ -98,7 +98,7 @@ namespace ChinhDo.Transactions
                 CopyDirectory(sourceSubDirectory, new DirectoryInfo(destinationSubDirectoryPath));
             }
         }
-		
+
         /// <summary>
         /// Disposes the resources of this class.
         /// </summary>

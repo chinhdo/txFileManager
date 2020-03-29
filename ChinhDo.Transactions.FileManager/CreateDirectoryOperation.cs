@@ -14,7 +14,7 @@ namespace ChinhDo.Transactions
         /// <summary>Instantiates the class.</summary>
         /// <param name="tempPath">Path to temp directory.</param>
         /// <param name="path">The directory path to create.</param>
-        public CreateDirectoryOperation(string tempPath, string path): base(tempPath)
+        public CreateDirectoryOperation(string tempPath, string path) : base(tempPath)
         {
             this._path = path;
         }

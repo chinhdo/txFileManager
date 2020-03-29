@@ -50,7 +50,7 @@ namespace ChinhDo.Transactions
         }
 
         /// <summary>Notifies an enlisted object that a transaction is being rolled back (aborted).</summary>
-        /// <param name="enlistment">A <see cref="T:System.Transactions.Enlistment"></see> object used to send a response to the transaction manager.</param>
+        /// <param name="enlistment">A <see cref="System.Transactions.Enlistment"></see> object used to send a response to the transaction manager.</param>
         /// <remarks>This is typically called on a different thread from the transaction thread.</remarks>
         public void Rollback(Enlistment enlistment)
         {

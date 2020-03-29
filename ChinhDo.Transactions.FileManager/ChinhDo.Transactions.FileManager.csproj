@@ -31,13 +31,11 @@
     <Product>.NET Transactional File Manager - include disk IO operations in your transactions</Product>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
-
-<!-- Notes
-* Create package (in FileManager project)
-nuget pack -build -Properties Configuration=Release
-
-* Push package (don't use the file in the project folder - that one is missing a bunch of attrs for some reason)
-dotnet nuget push .\bin\release\TxFileManager.1.4.0-beta1.nupkg -k <key> -s https://api.nuget.org/v3/index.json
-
--->
