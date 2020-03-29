@@ -38,6 +38,8 @@ This library is available as a [NuGet](https://www.nuget.org/packages/TxFileMana
 
 This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-file-manager/). It was hosted on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and migrated to GitHub in 3/2020.
 
+Additional contributors: @gvas, AirBreather.
+
 # Quick Start
 
 1. Add a reference to TxFileManager
