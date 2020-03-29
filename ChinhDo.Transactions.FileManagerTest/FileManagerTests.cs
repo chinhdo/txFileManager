@@ -363,8 +363,11 @@ namespace ChinhDo.Transactions.FileManagerTest
             finally
             {
                 FileInfo fi1 = new FileInfo(f1);
-                fi1.Attributes = FileAttributes.Normal;
-                File.Delete(f1);
+                if (fi1.Exists)
+                {
+                    fi1.Attributes = FileAttributes.Normal;
+                    File.Delete(f1);
+                }
             }
         }
 
