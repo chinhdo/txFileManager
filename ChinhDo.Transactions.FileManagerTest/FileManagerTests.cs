@@ -488,6 +488,7 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.Equal(iterations, exceptions.Count);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         private static void Launch(Action action, BlockingCollection<Exception> exceptions)
         {
             try
