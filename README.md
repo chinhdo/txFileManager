@@ -32,7 +32,7 @@ Support the following file operations in transactions:
 * WriteAllBytes: Write the specified bytes to the file.
 * WriteAllText: Write the specified text content to the file.
 
-If you have any suggestions for enhancements or bug reports please use the Issues list. Better yet, join this project and contribute yourself.
+If you have any suggestions for enhancements or bug reports please use the Issues list. Better yet, if possible join this project and contribute.
 
 This library is available as a [NuGet](https://www.nuget.org/packages/TxFileManager) package. The current/latest release is 1.4.
 
@@ -106,6 +106,9 @@ By default, the path returned by Path.GetTempPath() is used to keep temporary fi
 ```csharp
 IFileManager fm = new TxFileManager(myTempPath);
 ```
+## What is the future release roadmap?
+
+Looking for feature suggestions to be included in the next version. Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
 
 # Release Notes
 ## Version 1.4
