@@ -5,26 +5,26 @@ namespace ChinhDo.Transactions
 	/// <summary>Rollbackable operation which moves a directory to a new location.</summary>
 	sealed class MoveDirectoryOperation : IRollbackableOperation
 	{
-		private readonly string sourceFileName;
-		private readonly string destFileName;
+		private readonly string sourceDirName;
+		private readonly string destDirName;
 
 		/// <summary>Instantiates the class.</summary>
-		/// <param name="sourceFileName">The name of the directory to move.</param>
-		/// <param name="destFileName">The new path for the directory.</param>
-		public MoveDirectoryOperation(string sourceFileName, string destFileName)
+		/// <param name="sourceDirName">The name of the directory to move.</param>
+		/// <param name="destDirName">The new path for the directory.</param>
+		public MoveDirectoryOperation(string sourceDirName, string destDirName)
 		{
-			this.sourceFileName = sourceFileName;
-			this.destFileName = destFileName;
+			this.sourceDirName = sourceDirName;
+			this.destDirName = destDirName;
 		}
 
 		public void Execute()
 		{
-			Directory.Move(sourceFileName, destFileName);
+			Directory.Move(sourceDirName, destDirName);
 		}
 
 		public void Rollback()
 		{
-			Directory.Move(destFileName, sourceFileName);
+			Directory.Move(destDirName, sourceDirName);
 		}
 	}
 }
