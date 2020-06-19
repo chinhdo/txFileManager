@@ -28,6 +28,7 @@ Support the following file operations in transactions:
 * Move: Move a file.
 * CreateDirectory: Create a directory.
 * DeleteDirectory: Delete a directory.
+* MoveDirectory: Move a directory.
 * Snapshot: Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.
 * WriteAllBytes: Write the specified bytes to the file.
 * WriteAllText: Write the specified text content to the file.
