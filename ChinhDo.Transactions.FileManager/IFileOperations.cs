@@ -48,6 +48,13 @@ namespace ChinhDo.Transactions
         void Move(string srcFileName, string destFileName);
 
         /// <summary>
+        /// Moves the specified directory to a new location.
+        /// </summary>
+        /// <param name="srcDirName">The name of the directory to move.</param>
+        /// <param name="destDirName">The new path for the directory.</param>
+        void MoveDirectory(string srcDirName, string destDirName);
+
+        /// <summary>
         /// Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.
         /// </summary>
         /// <param name="fileName">The file to take a snapshot for.</param>

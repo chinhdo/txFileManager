@@ -272,15 +272,48 @@ namespace ChinhDo.Transactions.FileManagerTest
             string f2 = GetTempPathName();
             File.WriteAllText(f1, contents);
 
-            using (TransactionScope scope1 = new TransactionScope())
+            using (new TransactionScope())
             {
-                Assert.True(File.Exists(f1));
-                Assert.False(File.Exists(f2));
-                _target.Move(f1, f2);
+	            Assert.True(File.Exists(f1));
+	            Assert.False(File.Exists(f2));
+	            _target.Move(f1, f2);
             }
 
             Assert.Equal(contents, File.ReadAllText(f1));
             Assert.False(File.Exists(f2));
+        }
+
+        [Fact]
+        public void CanMoveDirectory() {
+	        string f1 = GetTempPathName();
+	        string f2 = GetTempPathName();
+	        Directory.CreateDirectory(f1);
+
+	        using (TransactionScope scope1 = new TransactionScope()) {
+		        Assert.True(Directory.Exists(f1));
+		        Assert.False(Directory.Exists(f2));
+		        _target.MoveDirectory(f1, f2);
+		        scope1.Complete();
+	        }
+
+	        Assert.False(Directory.Exists(f1));
+	        Assert.True(Directory.Exists(f2));
+        }
+
+        [Fact]
+        public void CanMoveDirectoryAndRollback() {
+	        string f1 = GetTempPathName();
+	        string f2 = GetTempPathName();
+	        Directory.CreateDirectory(f1);
+
+	        using (new TransactionScope()) {
+		        Assert.True(Directory.Exists(f1));
+		        Assert.False(Directory.Exists(f2));
+		        _target.MoveDirectory(f1, f2);
+	        }
+
+	        Assert.True(Directory.Exists(f1));
+	        Assert.False(Directory.Exists(f2));
         }
 
         [Fact]
