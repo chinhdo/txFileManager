@@ -110,7 +110,7 @@ IFileManager fm = new TxFileManager(myTempPath);
 
 Looking for feature suggestions to be included in the next version. Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
 
-[Issues tentatively included for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aopen+is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1)
+[Issues planned for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aopen+is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1)
 
 # Release Notes
 ## Version 1.4
