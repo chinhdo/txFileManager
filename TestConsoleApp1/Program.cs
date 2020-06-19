@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Transactions;
+using System.Diagnostics;
 
 namespace ChinhDo.Transactions.TestConsoleApp1
 {
@@ -11,14 +12,15 @@ namespace ChinhDo.Transactions.TestConsoleApp1
         static void Main(string[] args)
         {
             Console.WriteLine("Started.");
-
             RunStressTest();
-
             Console.WriteLine("Exiting.");
         }
 
         static void RunStressTest()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             {
                 // Pre-test checks
                 string tempDir;
@@ -26,6 +28,7 @@ namespace ChinhDo.Transactions.TestConsoleApp1
                 using (TransactionScope s1 = new TransactionScope())
                 {
                     tempDir = (new DirectoryInfo(fm.CreateTempDirectory())).Parent.FullName;
+                    Console.WriteLine("Temp path: " + tempDir);
                 }
 
                 string[] directories = Directory.GetDirectories(tempDir);
@@ -35,12 +38,11 @@ namespace ChinhDo.Transactions.TestConsoleApp1
                     Console.WriteLine(string.Format("ERROR  Please ensure temp path {0} has no children before running this test.", tempDir));
                     return;
                 }
-
             }
 
             // Start each test in its own thread and repeat for a few interations
             const int numThreads = 10;
-            const int iterations = 1000;
+            const int iterations = 250;
             const string text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
             long count = 0;
@@ -112,7 +114,9 @@ namespace ChinhDo.Transactions.TestConsoleApp1
                 t.Join();
             }
 
-            Console.WriteLine("All threads joined.");
+            sw.Stop();
+
+            Console.WriteLine("All threads joined. Elapsed: {0}.", sw.ElapsedMilliseconds);
 
         }
     }
