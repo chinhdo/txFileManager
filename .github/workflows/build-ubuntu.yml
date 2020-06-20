@@ -2,8 +2,6 @@ name: Build (Ubuntu)
 
 on:
   push:
-    branches:
-    - master
   pull_request:
     branches:
     - master
