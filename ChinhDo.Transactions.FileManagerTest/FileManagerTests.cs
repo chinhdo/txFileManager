@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Transactions;
 using Xunit;
@@ -17,8 +19,15 @@ namespace ChinhDo.Transactions.FileManagerTest
         public FileManagerTests()
         {
             _target = new TxFileManager();
+
+            int numTempFiles = Directory.GetFiles(_target.GetTempPath()).Length;
+            if (numTempFiles > 0)
+            {
+                throw new Exception(string.Format(CultureInfo.CurrentCulture, "Temp folder {0} is not empty. Please ensure folder is empty before running tests.",
+                    _target.GetTempPath()));
+            }
+
             _tempPaths = new List<string>();
-            // TODO delete any temp files
         }
 
         public void Dispose()
@@ -37,7 +46,7 @@ namespace ChinhDo.Transactions.FileManagerTest
                 }
             }
 
-            int numTempFiles = Directory.GetFiles(Path.Combine(Path.GetTempPath(), "TxFileMgr-fc4eed76ee9b")).Length;
+            int numTempFiles = Directory.GetFiles(_target.GetTempPath()).Length;
             Assert.Equal(0, numTempFiles);
         }
 
@@ -79,10 +88,10 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             string f1 = GetTempPathName();
             const string contents = "qwerty";
-            using (TransactionScope sc1 = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
                 _target.AppendAllText(f1, contents);
-                // without specifically committing, this should rollback
+                // without calling scope.Complete() this will roll back
             }
 
             Assert.False(File.Exists(f1), f1 + " should not exist.");
@@ -117,10 +126,11 @@ namespace ChinhDo.Transactions.FileManagerTest
             using (TransactionScope scope1 = new TransactionScope())
             {
                 _target.Copy(sourceFileName, destFileName, false);
-                // without specifically committing, this should rollback
+                // without calling scope.Complete() this will roll back
             }
 
             Assert.False(File.Exists(destFileName), destFileName + " should not exist.");
+            Assert.Equal(expectedText, File.ReadAllText(sourceFileName));
         }
 
         [Fact]
@@ -335,7 +345,7 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             string f1 = GetTempPathName();
             const string contents = "abcdef";
-            File.WriteAllText(f1, "123");
+            File.WriteAllText(f1, "123", Encoding.UTF8);
 
             using (TransactionScope scope1 = new TransactionScope())
             {

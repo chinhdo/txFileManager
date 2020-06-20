@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Transactions;
 
 namespace ChinhDo.Transactions
 {
     /// <summary>
-    /// File Resource Manager. Allows inclusion of file system operations in transactions (<see cref="System.Transactions"/>).
-    /// http://www.chinhdo.com/20080825/transactional-file-manager/
+    /// Allows inclusion of file system operations in transactions (<see cref="System.Transactions"/>).
     /// </summary>
     public class TxFileManager : IFileManager
     {
@@ -32,7 +32,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new AppendAllTextOperation(this.GetTempPath(), path, contents));
+                EnlistOperation(new AppendAllTextOperation(GetTempPath(), path, contents));
             }
             else
             {
@@ -44,7 +44,7 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new CopyOperation(this.GetTempPath(), sourceFileName, destFileName, overwrite));
+                EnlistOperation(new CopyOperation(GetTempPath(), sourceFileName, destFileName, overwrite));
             }
             else
             {
@@ -61,127 +61,6 @@ namespace ChinhDo.Transactions
             else
             {
                 Directory.CreateDirectory(path);
-            }
-        }
-
-        public void Delete(string path)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new DeleteFileOperation(this.GetTempPath(), path));
-            }
-            else
-            {
-                File.Delete(path);
-            }
-        }
-
-        public void DeleteDirectory(string path)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new DeleteDirectoryOperation(GetTempPath(), path));
-            }
-            else
-            {
-                Directory.Delete(path, true);
-            }
-        }
-
-        public void Move(string srcFileName, string destFileName)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new MoveFileOperation(srcFileName, destFileName));
-            }
-            else
-            {
-                File.Move(srcFileName, destFileName);
-            }
-        }
-
-        public void MoveDirectory(string srcDirName, string destDirName) {
-	        if (IsInTransaction()) {
-		        EnlistOperation(new MoveDirectoryOperation(srcDirName, destDirName));
-	        }
-	        else {
-		        File.Move(srcDirName, destDirName);
-	        }
-        }
-
-        public void Snapshot(string fileName)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new SnapshotOperation(this.GetTempPath(), fileName));
-            }
-        }
-
-        public void WriteAllText(string path, string contents)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new WriteAllTextOperation(this.GetTempPath(), path, contents));
-            }
-            else
-            {
-                File.WriteAllText(path, contents);
-            }
-        }
-
-        public void WriteAllBytes(string path, byte[] contents)
-        {
-            if (IsInTransaction())
-            {
-                EnlistOperation(new WriteAllBytesOperation(this.GetTempPath(), path, contents));
-            }
-            else
-            {
-                File.WriteAllBytes(path, contents);
-            }
-        }
-
-        #endregion
-
-        /// <summary>Determines whether the specified path refers to a directory that exists on disk.</summary>
-        /// <param name="path">The directory to check.</param>
-        /// <returns>True if the directory exists.</returns>
-        public bool DirectoryExists(string path)
-        {
-            return Directory.Exists(path);
-        }
-
-        /// <summary>Determines whether the specified file exists.</summary>
-        /// <param name="path">The file to check.</param>
-        /// <returns>True if the file exists.</returns>
-        public bool FileExists(string path)
-        {
-            return File.Exists(path);
-        }
-
-        /// <summary>Gets the files in the specified directory.</summary>
-        /// <param name="path">The directory to get files.</param>
-        /// <param name="handler">The <see cref="FileEventHandler"/> object to call on each file found.</param>
-        /// <param name="recursive">if set to <c>true</c>, include files in sub directories recursively.</param>
-        public void GetFiles(string path, FileEventHandler handler, bool recursive)
-        {
-            foreach (string fileName in Directory.GetFiles(path))
-            {
-                bool cancel = false;
-                handler(fileName, ref cancel);
-                if (cancel)
-                {
-                    return;
-                }
-            }
-
-            // Check subdirs
-            if (recursive)
-            {
-                foreach (string folderName in Directory.GetDirectories(path))
-                {
-                    GetFiles(folderName, handler, recursive);
-                }
             }
         }
 
@@ -209,20 +88,133 @@ namespace ChinhDo.Transactions
             Guid g = Guid.NewGuid();
             string dirName = Path.Combine(parentDirectory, prefix + g.ToString().Substring(0, 16));
 
-            // TODO SnapShot Directory
             CreateDirectory(dirName);
 
             return dirName;
         }
 
-        /// <summary>
-        /// Gets the folder where we should store temporary files and folders. Override this if you want your own impl.
-        /// </summary>
-        /// <returns></returns>
+        public void Delete(string path)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new DeleteFileOperation(this.GetTempPath(), path));
+            }
+            else
+            {
+                File.Delete(path);
+            }
+        }
+
+        public void DeleteDirectory(string path)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new DeleteDirectoryOperation(GetTempPath(), path));
+            }
+            else
+            {
+                Directory.Delete(path, true);
+            }
+        }
+
+        public bool DirectoryExists(string path)
+        {
+            return Directory.Exists(path);
+        }
+
+        public bool FileExists(string path)
+        {
+            return File.Exists(path);
+        }
+
+        public void GetFiles(string path, FileEventHandler handler, bool recursive)
+        {
+            foreach (string fileName in Directory.GetFiles(path))
+            {
+                bool cancel = false;
+                handler(fileName, ref cancel);
+                if (cancel)
+                {
+                    return;
+                }
+            }
+
+            // Check subdirs
+            if (recursive)
+            {
+                foreach (string folderName in Directory.GetDirectories(path))
+                {
+                    GetFiles(folderName, handler, recursive);
+                }
+            }
+        }
+
         public string GetTempPath()
         {
             return this._tempPath;
         }
+
+        public void Move(string srcFileName, string destFileName)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new MoveFileOperation(srcFileName, destFileName));
+            }
+            else
+            {
+                File.Move(srcFileName, destFileName);
+            }
+        }
+
+        public void MoveDirectory(string srcDirName, string destDirName) {
+	        if (IsInTransaction()) {
+		        EnlistOperation(new MoveDirectoryOperation(srcDirName, destDirName));
+	        }
+	        else {
+		        File.Move(srcDirName, destDirName);
+	        }
+        }
+
+        public void Snapshot(string fileName)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new SnapshotOperation(GetTempPath(), fileName));
+            }
+        }
+
+        public void WriteAllText(string path, string contents)
+        {
+            WriteAllText(path, contents, Encoding.Default);
+        }
+
+        public void WriteAllText(string path, string contents, Encoding encoding)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllTextOperation(GetTempPath(), path, contents, encoding));
+            }
+            else
+            {
+                File.WriteAllText(path, contents);
+            }
+        }
+
+        public void WriteAllBytes(string path, byte[] contents)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllBytesOperation(GetTempPath(), path, contents));
+            }
+            else
+            {
+                File.WriteAllBytes(path, contents);
+            }
+        }
+
+        #endregion
+
+        #region Other Ops
 
         /// <summary>Get the count of _enlistments</summary>
         /// <returns></returns>
@@ -230,6 +222,8 @@ namespace ChinhDo.Transactions
         {
             return _enlistments.Count;
         }
+
+        #endregion
 
         #region Private
 
