@@ -186,6 +186,69 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         [Fact]
+        public void CanCopyDirectory()
+        {
+            string srcDir = _target.CreateTempDirectory();
+            string destDir = _target.CreateTempDirectory();
+            Directory.Delete(destDir);
+
+            try
+            {
+                string subDir1 = Path.Combine(srcDir, "sub1");
+                string subDir2 = Path.Combine(subDir1, "sub2");
+                Directory.CreateDirectory(subDir1);
+                string file1 = Path.Combine(subDir1, "file1.txt");
+                File.WriteAllText(file1, "file1");
+
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _target.CopyDirectory(srcDir, destDir);
+
+                    scope.Complete();
+                }
+
+                Assert.True(Directory.Exists(destDir));
+                Assert.True(File.Exists(file1));
+            }
+            finally
+            {
+                Directory.Delete(srcDir, true);
+                Directory.Delete(destDir, true);
+            }
+        }
+
+        [Fact]
+        public void CanCopyDirectoryAndRollback()
+        {
+            string srcDir = _target.CreateTempDirectory();
+            string destDir = _target.CreateTempDirectory();
+            Directory.Delete(destDir);
+
+            try
+            {
+                string subDir1 = Path.Combine(srcDir, "sub1");
+                string subDir2 = Path.Combine(subDir1, "sub2");
+                Directory.CreateDirectory(subDir1);
+                string file1 = Path.Combine(subDir1, "file1.txt");
+                File.WriteAllText(file1, "file1");
+
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _target.CopyDirectory(srcDir, destDir);
+
+                    // Roll back by not calling scope.Complete();
+                }
+
+                Assert.False(Directory.Exists(destDir));
+            }
+            finally
+            {
+                Directory.Delete(srcDir, true);
+                if (Directory.Exists(destDir)) { Directory.Delete(destDir, true); }
+            }
+        }
+
+        [Fact]
         public void CanCreateDirectoryAndRollback()
         {
             string d1 = GetTempPathName();

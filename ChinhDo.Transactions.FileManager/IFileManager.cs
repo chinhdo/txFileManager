@@ -1,4 +1,5 @@
 using System.Text;
+using System;
 
 namespace ChinhDo.Transactions
 {
@@ -21,6 +22,13 @@ namespace ChinhDo.Transactions
         /// <param name="destFileName">The name of the destination file.</param>
         /// <param name="overwrite">true if the destination file can be overwritten, otherwise false.</param>
         void Copy(string sourceFileName, string destFileName, bool overwrite);
+
+        /// <summary>
+        /// Copy a directory
+        /// </summary>
+        /// <param name="srcDir">Source directory</param>
+        /// <param name="destDir">Destination directory</param>
+        void CopyDirectory(string srcDir, string destDir);
 
         /// <summary>
         /// Creates all directories in the specified path.

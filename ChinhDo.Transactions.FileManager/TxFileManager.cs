@@ -52,6 +52,18 @@ namespace ChinhDo.Transactions
             }
         }
 
+        public void CopyDirectory(string srcDir, string destDir)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new CopyDirectoryOperation(GetTempPath(), srcDir, destDir));
+            }
+            else
+            {
+                CopyAll(new DirectoryInfo(srcDir), new DirectoryInfo(destDir));
+            }
+        }
+
         public void CreateDirectory(string path)
         {
             if (IsInTransaction())
@@ -235,6 +247,34 @@ namespace ChinhDo.Transactions
         internal static Dictionary<string, TxEnlistment> _enlistments;
         internal static readonly object _enlistmentsLock = new object();
         private string _tempPath = null;
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (target is null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
+        }
 
         private static bool IsInTransaction()
         {
