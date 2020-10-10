@@ -28,6 +28,7 @@ Support the following file operations in transactions:
 * Move: Move a file.
 * CreateDirectory: Create a directory.
 * DeleteDirectory: Delete a directory.
+* MoveDirectory: Move a directory.
 * Snapshot: Take a snapshot of the specified file. The snapshot is used to rollback the file later if needed.
 * WriteAllBytes: Write the specified bytes to the file.
 * WriteAllText: Write the specified text content to the file.
@@ -124,7 +125,15 @@ Looking for feature suggestions to be included in the next version. Please sugge
 [Issues planned for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aopen+is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1)
 
 # Release Notes
-## Version 1.4
+
+## Version 1.5 (future release)
+
+* Added new operations
+    * CopyDirectory
+    * MoveDirectory
+* Added Encoding support to WriteAllText, AppendAllText (TODO)
+
+## Version 1.4 (Released 3/2020)
 * Convert to xUnit tests
 * Add support for custom temp paths to address issues with file/dir operations accross filesystems
 * Fix for resource leak in TxFileManager._txEnlistment

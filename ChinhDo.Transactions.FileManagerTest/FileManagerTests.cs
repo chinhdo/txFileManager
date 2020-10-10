@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Transactions;
 using Xunit;
@@ -17,8 +19,15 @@ namespace ChinhDo.Transactions.FileManagerTest
         public FileManagerTests()
         {
             _target = new TxFileManager();
+
+            int numTempFiles = Directory.GetFiles(_target.GetTempPath()).Length;
+            if (numTempFiles > 0)
+            {
+                throw new Exception(string.Format(CultureInfo.CurrentCulture, "Temp folder {0} is not empty. Please ensure folder is empty before running tests.",
+                    _target.GetTempPath()));
+            }
+
             _tempPaths = new List<string>();
-            // TODO delete any temp files
         }
 
         public void Dispose()
@@ -37,7 +46,7 @@ namespace ChinhDo.Transactions.FileManagerTest
                 }
             }
 
-            int numTempFiles = Directory.GetFiles(Path.Combine(Path.GetTempPath(), "TxFileMgr-fc4eed76ee9b")).Length;
+            int numTempFiles = Directory.GetFiles(_target.GetTempPath()).Length;
             Assert.Equal(0, numTempFiles);
         }
 
@@ -79,10 +88,10 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             string f1 = GetTempPathName();
             const string contents = "qwerty";
-            using (TransactionScope sc1 = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
                 _target.AppendAllText(f1, contents);
-                // without specifically committing, this should rollback
+                // without calling scope.Complete() this will roll back
             }
 
             Assert.False(File.Exists(f1), f1 + " should not exist.");
@@ -117,10 +126,11 @@ namespace ChinhDo.Transactions.FileManagerTest
             using (TransactionScope scope1 = new TransactionScope())
             {
                 _target.Copy(sourceFileName, destFileName, false);
-                // without specifically committing, this should rollback
+                // without calling scope.Complete() this will roll back
             }
 
             Assert.False(File.Exists(destFileName), destFileName + " should not exist.");
+            Assert.Equal(expectedText, File.ReadAllText(sourceFileName));
         }
 
         [Fact]
@@ -173,6 +183,69 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.False(Directory.Exists(nested), nested + " should not exists.");
             Assert.True(Directory.Exists(baseDir), baseDir + " should exist.");
             Directory.Delete(baseDir);
+        }
+
+        [Fact]
+        public void CanCopyDirectory()
+        {
+            string srcDir = _target.CreateTempDirectory();
+            string destDir = _target.CreateTempDirectory();
+            Directory.Delete(destDir);
+
+            try
+            {
+                string subDir1 = Path.Combine(srcDir, "sub1");
+                string subDir2 = Path.Combine(subDir1, "sub2");
+                Directory.CreateDirectory(subDir1);
+                string file1 = Path.Combine(subDir1, "file1.txt");
+                File.WriteAllText(file1, "file1");
+
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _target.CopyDirectory(srcDir, destDir);
+
+                    scope.Complete();
+                }
+
+                Assert.True(Directory.Exists(destDir));
+                Assert.True(File.Exists(file1));
+            }
+            finally
+            {
+                Directory.Delete(srcDir, true);
+                Directory.Delete(destDir, true);
+            }
+        }
+
+        [Fact]
+        public void CanCopyDirectoryAndRollback()
+        {
+            string srcDir = _target.CreateTempDirectory();
+            string destDir = _target.CreateTempDirectory();
+            Directory.Delete(destDir);
+
+            try
+            {
+                string subDir1 = Path.Combine(srcDir, "sub1");
+                string subDir2 = Path.Combine(subDir1, "sub2");
+                Directory.CreateDirectory(subDir1);
+                string file1 = Path.Combine(subDir1, "file1.txt");
+                File.WriteAllText(file1, "file1");
+
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _target.CopyDirectory(srcDir, destDir);
+
+                    // Roll back by not calling scope.Complete();
+                }
+
+                Assert.False(Directory.Exists(destDir));
+            }
+            finally
+            {
+                Directory.Delete(srcDir, true);
+                if (Directory.Exists(destDir)) { Directory.Delete(destDir, true); }
+            }
         }
 
         [Fact]
@@ -274,9 +347,9 @@ namespace ChinhDo.Transactions.FileManagerTest
 
             using (new TransactionScope())
             {
-	            Assert.True(File.Exists(f1));
-	            Assert.False(File.Exists(f2));
-	            _target.Move(f1, f2);
+                Assert.True(File.Exists(f1));
+                Assert.False(File.Exists(f2));
+                _target.Move(f1, f2);
             }
 
             Assert.Equal(contents, File.ReadAllText(f1));
@@ -284,36 +357,40 @@ namespace ChinhDo.Transactions.FileManagerTest
         }
 
         [Fact]
-        public void CanMoveDirectory() {
-	        string f1 = GetTempPathName();
-	        string f2 = GetTempPathName();
-	        Directory.CreateDirectory(f1);
+        public void CanMoveDirectory()
+        {
+            string f1 = GetTempPathName();
+            string f2 = GetTempPathName();
+            Directory.CreateDirectory(f1);
 
-	        using (TransactionScope scope1 = new TransactionScope()) {
-		        Assert.True(Directory.Exists(f1));
-		        Assert.False(Directory.Exists(f2));
-		        _target.MoveDirectory(f1, f2);
-		        scope1.Complete();
-	        }
+            using (TransactionScope scope1 = new TransactionScope())
+            {
+                Assert.True(Directory.Exists(f1));
+                Assert.False(Directory.Exists(f2));
+                _target.MoveDirectory(f1, f2);
+                scope1.Complete();
+            }
 
-	        Assert.False(Directory.Exists(f1));
-	        Assert.True(Directory.Exists(f2));
+            Assert.False(Directory.Exists(f1));
+            Assert.True(Directory.Exists(f2));
         }
 
         [Fact]
-        public void CanMoveDirectoryAndRollback() {
-	        string f1 = GetTempPathName();
-	        string f2 = GetTempPathName();
-	        Directory.CreateDirectory(f1);
+        public void CanMoveDirectoryAndRollback()
+        {
+            string f1 = GetTempPathName();
+            string f2 = GetTempPathName();
+            Directory.CreateDirectory(f1);
 
-	        using (new TransactionScope()) {
-		        Assert.True(Directory.Exists(f1));
-		        Assert.False(Directory.Exists(f2));
-		        _target.MoveDirectory(f1, f2);
-	        }
+            using (new TransactionScope())
+            {
+                Assert.True(Directory.Exists(f1));
+                Assert.False(Directory.Exists(f2));
+                _target.MoveDirectory(f1, f2);
+            }
 
-	        Assert.True(Directory.Exists(f1));
-	        Assert.False(Directory.Exists(f2));
+            Assert.True(Directory.Exists(f1));
+            Assert.False(Directory.Exists(f2));
         }
 
         [Fact]
@@ -335,7 +412,7 @@ namespace ChinhDo.Transactions.FileManagerTest
         {
             string f1 = GetTempPathName();
             const string contents = "abcdef";
-            File.WriteAllText(f1, "123");
+            File.WriteAllText(f1, "123", Encoding.UTF8);
 
             using (TransactionScope scope1 = new TransactionScope())
             {

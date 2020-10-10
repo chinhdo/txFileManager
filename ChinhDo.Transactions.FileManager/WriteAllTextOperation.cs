@@ -14,15 +14,6 @@ namespace ChinhDo.Transactions
         /// <summary>Instantiates the class.</summary>
         /// <param name="path">The file to write to.</param>
         /// <param name="contents">The string to write to the file.</param>
-        /// <param name="tempPath">Path to temp directory.</param>
-        public WriteAllTextOperation(string tempPath, string path, string contents) : base(tempPath, path)
-        {
-            this.contents = contents;
-        }
-
-        /// <summary>Instantiates the class.</summary>
-        /// <param name="path">The file to write to.</param>
-        /// <param name="contents">The string to write to the file.</param>
         /// <param name="encoding">The encoding to the file.</param>
         /// <param name="tempPath">Path to temp directory.</param>
         public WriteAllTextOperation(string tempPath, string path, string contents, Encoding encoding) : base(tempPath, path)

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Transactions;
-using System.Diagnostics;
 
 namespace ChinhDo.Transactions.TestConsoleApp1
 {
