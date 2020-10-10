@@ -32,7 +32,19 @@ namespace ChinhDo.Transactions
         {
             if (IsInTransaction())
             {
-                EnlistOperation(new AppendAllTextOperation(GetTempPath(), path, contents));
+                EnlistOperation(new AppendAllTextOperation(GetTempPath(), path, contents, null));
+            }
+            else
+            {
+                File.AppendAllText(path, contents);
+            }
+        }
+
+        public void AppendAllText(string path, string contents, Encoding encoding)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new AppendAllTextOperation(GetTempPath(), path, contents, encoding));
             }
             else
             {

@@ -18,3 +18,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>", Scope = "member", Target = "~M:ChinhDo.Transactions.CopyDirectoryOperation.Execute")]
 [assembly: SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "<Pending>", Scope = "member", Target = "~M:ChinhDo.Transactions.CopyDirectoryOperation.Execute")]
 [assembly: SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "<Pending>", Scope = "member", Target = "~M:ChinhDo.Transactions.TxFileManager.WriteAllText(System.String,System.String,System.Text.Encoding)")]
+[assembly: SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "<Pending>", Scope = "member", Target = "~M:ChinhDo.Transactions.TxFileManager.AppendAllText(System.String,System.String,System.Text.Encoding)")]

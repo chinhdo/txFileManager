@@ -16,6 +16,14 @@ namespace ChinhDo.Transactions
         void AppendAllText(string path, string contents);
 
         /// <summary>
+        /// Appends the specified string the file, creating the file if it doesn't already exist.
+        /// </summary>
+        /// <param name="path">The file to append the string to.</param>
+        /// <param name="contents">The string to append to the file.</param>
+        /// <param name="encoding">Encoding</param>
+        void AppendAllText(string path, string contents, Encoding encoding);
+
+        /// <summary>
         /// Copies the specified <paramref name="sourceFileName"/> to <paramref name="destFileName"/>.
         /// </summary>
         /// <param name="sourceFileName">The file to copy.</param>

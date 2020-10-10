@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>TxFileManager</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <title>.NET Transactional File Manager - include disk IO operations in your transactions</title>
     <Authors>chinhdo</Authors>
     <owners>chinhdo</owners>
@@ -17,18 +17,9 @@
     <PackageProjectUrl>https://github.com/chinhdo/txFileManager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chinhdo/txFileManager.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>
-      * Convert to xUnit tests
-      * Add support for custom temp paths to address issues with file/dir operations accross filesystems
-      * Fix for resource leak in TxFileManager._txEnlistment
-      * Target .NET Standard 2.0
-      * Additional testing for .NET Core on Ubuntu
-      * Additional stress testing both on Windows and Ubuntu
-      * Created Github workflow to automatically build/test on ubuntu
-      * Added FxCop static analysis
-    </PackageReleaseNotes>
-    <AssemblyVersion>1.4.0.36</AssemblyVersion>
-    <FileVersion>1.4.0.36</FileVersion>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <AssemblyVersion>1.5.0.37</AssemblyVersion>
+    <FileVersion>1.5.0.37</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <Company />
