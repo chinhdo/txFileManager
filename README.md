@@ -106,6 +106,17 @@ By default, the path returned by Path.GetTempPath() is used to keep temporary fi
 ```csharp
 IFileManager fm = new TxFileManager(myTempPath);
 ```
+
+## How do I contribute to the project?
+
+* Fork the repo
+* Create a branch such as my-new-feature
+* Make your change/fix and associated unit tests and commit
+* Run the tests (```dotnet test```)
+* Open a Pull Request (PR) to the "master" branch
+
+Notes: A release branch will be created out of the master branch when a release is made. The master branch will contain the latest features being added/tested for the next release.
+
 ## What is the future release roadmap?
 
 Looking for feature suggestions to be included in the next version. Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
