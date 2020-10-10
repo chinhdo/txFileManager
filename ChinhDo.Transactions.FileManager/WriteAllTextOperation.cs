@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 
 namespace ChinhDo.Transactions
 {
@@ -8,6 +9,7 @@ namespace ChinhDo.Transactions
     sealed class WriteAllTextOperation : SingleFileOperation
     {
         private readonly string contents;
+        private readonly Encoding encoding;
 
         /// <summary>Instantiates the class.</summary>
         /// <param name="path">The file to write to.</param>
@@ -16,6 +18,17 @@ namespace ChinhDo.Transactions
         public WriteAllTextOperation(string tempPath, string path, string contents) : base(tempPath, path)
         {
             this.contents = contents;
+        }
+
+        /// <summary>Instantiates the class.</summary>
+        /// <param name="path">The file to write to.</param>
+        /// <param name="contents">The string to write to the file.</param>
+        /// <param name="encoding">The encoding to the file.</param>
+        /// <param name="tempPath">Path to temp directory.</param>
+        public WriteAllTextOperation(string tempPath, string path, string contents, Encoding encoding) : base(tempPath, path)
+        {
+            this.contents = contents;
+            this.encoding = encoding;
         }
 
         public override void Execute()
@@ -27,7 +40,10 @@ namespace ChinhDo.Transactions
                 backupPath = temp;
             }
 
-            File.WriteAllText(path, contents);
+            if (encoding == null)
+                File.WriteAllText(path, contents);
+            else
+                File.WriteAllText(path, contents, encoding);
         }
     }
 }

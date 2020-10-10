@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Transactions;
 
 namespace ChinhDo.Transactions
@@ -126,6 +127,18 @@ namespace ChinhDo.Transactions
             else
             {
                 File.WriteAllText(path, contents);
+            }
+        }
+
+        public void WriteAllText(string path, string contents, Encoding encoding)
+        {
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllTextOperation(this.GetTempPath(), path, contents, encoding));
+            }
+            else
+            {
+                File.WriteAllText(path, contents, encoding);
             }
         }
 
