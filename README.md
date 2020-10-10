@@ -122,8 +122,6 @@ Notes: A release branch will be created out of the master branch when a release 
 
 Looking for feature suggestions to be included in the next version. Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
 
-[Issues planned for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aopen+is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1)
-
 # Release Notes
 
 ## Version 1.5 (next release - tentatively planned for Q4 2020)
@@ -133,6 +131,8 @@ Looking for feature suggestions to be included in the next version. Please sugge
     * MoveDirectory
 * Added Encoding support to WriteAllText, AppendAllText
 * Misc refactors/clean-up
+
+[View issues for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1+)
 
 ## Version 1.4 (Released 3/2020)
 * Convert to xUnit tests
