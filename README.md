@@ -126,12 +126,13 @@ Looking for feature suggestions to be included in the next version. Please sugge
 
 # Release Notes
 
-## Version 1.5 (future release)
+## Version 1.5 (next release - tentatively planned for Q4 2020)
 
 * Added new operations
     * CopyDirectory
     * MoveDirectory
-* Added Encoding support to WriteAllText, AppendAllText (TODO)
+* Added Encoding support to WriteAllText, AppendAllText
+* Misc refactors/clean-up
 
 ## Version 1.4 (Released 3/2020)
 * Convert to xUnit tests
