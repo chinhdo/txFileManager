@@ -86,7 +86,7 @@ Or Use Visual Studio's Manage NuGet Packages to add. Search for "TxFileManager".
 
 It's not expensive to create new instances of TxFileManager as needed. There's a bit of overhead (like creating instances of any small class) but not much.
 
-On the other hand, you can also re-use the same instance for multiple transactions, even nested transactions.
+On the other hand, it's totally safe to re-use the same instance for multiple transactions, even nested transactions.
 
 ## Is TxFileManager Thread Safe?
 
