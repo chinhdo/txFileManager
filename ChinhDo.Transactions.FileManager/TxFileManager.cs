@@ -255,7 +255,7 @@ namespace ChinhDo.Transactions
         #region Private
 
         /// <summary>Dictionary of transaction enlistment objects for the current thread.</summary>
-        [ThreadStatic]
+        //[ThreadStatic] <-- Is this needed?
         internal static Dictionary<string, TxEnlistment> _enlistments;
         internal static readonly object _enlistmentsLock = new object();
         private string _tempPath = null;
