@@ -1,4 +1,4 @@
-Transactional File Manager is a .NET Standard library that supports including file system operations such
+Transactional File Manager is a .NET Standard 2.0 library that supports including file system operations such
 as file copy, move, delete, append, etc. in a transaction. It's an implementation of
 System.Transaction.IEnlistmentNotification.
 
