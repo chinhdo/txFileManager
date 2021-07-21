@@ -3,9 +3,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Transactions;
 using Xunit;
 
@@ -654,6 +656,44 @@ namespace ChinhDo.Transactions.FileManagerTest
 
             File.Delete(f1);
             File.Delete(f2);
+        }
+
+        [Fact]
+        public async Task HandlesAsync()
+        {
+            var scheduler = new ThreadedPerTaskScheduler();
+            async Task RunInNewThread(Func<Task> action)
+            {
+                await Task.Factory.StartNew(action, CancellationToken.None, TaskCreationOptions.None, scheduler);
+            }
+            TransactionScope ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+            IFileManager fm = null;
+            await RunInNewThread(() =>
+            {
+                fm = new TxFileManager();
+                fm.WriteAllBytes("test", new byte[] { 1, 2, 3 });
+                return Task.CompletedTask;
+            });
+            ts.Complete();
+            ts.Dispose();
+        }
+
+        private class ThreadedPerTaskScheduler : TaskScheduler
+        {
+            protected override IEnumerable<Task> GetScheduledTasks()
+            {
+                return Enumerable.Empty<Task>();
+            }
+
+            protected override void QueueTask(Task task)
+            {
+                new Thread(() => TryExecuteTask(task)) { IsBackground = true }.Start();
+            }
+
+            protected override bool TryExecuteTaskInline(Task task, bool taskWasPreviouslyQueued)
+            {
+                return TryExecuteTask(task);
+            }
         }
 
         #endregion
