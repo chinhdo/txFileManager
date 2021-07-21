@@ -118,13 +118,10 @@ IFileManager fm = new TxFileManager(myTempPath);
 
 Notes: A release branch will be created out of the master branch when a release is made. The master branch will contain the latest features being added/tested for the next release.
 
-## What is the future release roadmap?
-
-Looking for feature suggestions to be included in the next version. Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
-
-# Release Notes
+# Nuget Releases
 
 ## Version 1.4 (Current - released 3/2020)
+
 * Convert to xUnit tests
 * Add support for custom temp paths to address issues with file/dir operations accross filesystems
 * Fix for resource leak in TxFileManager._txEnlistment
@@ -134,7 +131,7 @@ Looking for feature suggestions to be included in the next version. Please sugge
 * Created Github workflow to automatically build/test on ubuntu
 * Added FxCop static analysis
 
-## Version 1.5 (next release - tentatively planned for 8/2021)
+## Version 1.5 (next release - planned for 8/2021)
 
 * Bug fix Async code ([Issue #27](https://github.com/chinhdo/txFileManager/issues/27))
 * Added new operations
@@ -144,3 +141,5 @@ Looking for feature suggestions to be included in the next version. Please sugge
 * Misc refactors/clean-up
 
 [View issues for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1+)
+
+Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.
