@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChinhDo.Transactions.FileManager\ChinhDo.Transactions.FileManager.csproj" />
+    <PackageReference Include="TxFileManager" Version="1.5.0" />
   </ItemGroup>
 
 </Project>
