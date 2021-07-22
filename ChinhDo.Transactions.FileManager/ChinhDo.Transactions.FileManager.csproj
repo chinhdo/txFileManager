@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>TxFileManager</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <title>.NET Transactional File Manager - include disk IO operations in your transactions</title>
     <Authors>chinhdo</Authors>
     <owners>chinhdo</owners>
@@ -20,13 +20,15 @@ See GitHub project for more info: https://github.com/chinhdo/txFileManager</Desc
     <PackageReleaseNotes>- Bug fix Async code (Issue #27)
 - Added new operations: CopyDirectory, MoveDirectory
 - Added Encoding support to WriteAllText, AppendAllText
+- Nuget package icon
 - Misc refactors/clean-up</PackageReleaseNotes>
-    <AssemblyVersion>1.5.0.40</AssemblyVersion>
-    <FileVersion>1.5.0.40</FileVersion>
+    <AssemblyVersion>1.5.1.41</AssemblyVersion>
+    <FileVersion>1.5.1.41</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <Company />
     <Product>.NET Transactional File Manager - include disk IO operations in your transactions</Product>
+    <PackageIcon>TxFileManager.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +36,16 @@ See GitHub project for more info: https://github.com/chinhdo/txFileManager</Desc
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TxFileManager.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TxFileManager.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

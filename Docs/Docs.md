@@ -2,7 +2,7 @@
 
 Create package (in FileManager project)
 ```
-dotnet pack --output nupkgs
+dotnet pack -c Release --output nupkgs
 ```
 
 Push package (don't use the file in the project folder - that one is missing a bunch of attrs for some reason)
