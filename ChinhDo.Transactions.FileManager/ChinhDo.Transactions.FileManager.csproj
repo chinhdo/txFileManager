@@ -8,18 +8,21 @@
     <Authors>chinhdo</Authors>
     <owners>chinhdo</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <Description>
-      Transactional File Manager is a .NET API that supports including file system operations such as file copy, move, delete, append, etc. in a transaction. It's an implementation of System.Transaction.IEnlistmentNotification (works with System.Transactions.TransactionScope). See GitHub project for more info: https://github.com/chinhdo/txFileManager
-    </Description>
-    <Copyright>(c) 2016-2020 Chinh Do</Copyright>
+    <Description>Transactional File Manager is a .NET API that supports including file system operations such as file copy, move, delete, append, etc. in a transaction. It's an implementation of System.Transaction.IEnlistmentNotification (works with System.Transactions.TransactionScope).
+
+See GitHub project for more info: https://github.com/chinhdo/txFileManager</Description>
+    <Copyright>(c) 2016-2021 Chinh Do</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>TransactionScope,File,Directory,Transaction,NET,dotnet,IO</PackageTags>
     <PackageProjectUrl>https://github.com/chinhdo/txFileManager</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chinhdo/txFileManager.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>TODO</PackageReleaseNotes>
-    <AssemblyVersion>1.5.0.37</AssemblyVersion>
-    <FileVersion>1.5.0.37</FileVersion>
+    <PackageReleaseNotes>- Bug fix Async code (Issue #27)
+- Added new operations: CopyDirectory, MoveDirectory
+- Added Encoding support to WriteAllText, AppendAllText
+- Misc refactors/clean-up</PackageReleaseNotes>
+    <AssemblyVersion>1.5.0.40</AssemblyVersion>
+    <FileVersion>1.5.0.40</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <Company />
