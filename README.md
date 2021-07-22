@@ -120,7 +120,7 @@ Notes: A release branch will be created out of the master branch when a release 
 
 # Nuget Releases
 
-## Version 1.4 (Current - released 3/2020)
+## Version 1.4 (released 3/2020)
 
 * Convert to xUnit tests
 * Add support for custom temp paths to address issues with file/dir operations accross filesystems
@@ -131,7 +131,7 @@ Notes: A release branch will be created out of the master branch when a release 
 * Created Github workflow to automatically build/test on ubuntu
 * Added FxCop static analysis
 
-## Version 1.5 (next release - planned for 8/2021)
+## Version 1.5 (release 7/21/2021)
 
 * Bug fix Async code ([Issue #27](https://github.com/chinhdo/txFileManager/issues/27))
 * Added new operations
