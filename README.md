@@ -131,7 +131,7 @@ Notes: A release branch will be created out of the master branch when a release 
 * Created Github workflow to automatically build/test on ubuntu
 * Added FxCop static analysis
 
-## Version 1.5 (release 7/21/2021)
+## Version 1.5 (released 7/21/2021)
 
 * Bug fix Async code ([Issue #27](https://github.com/chinhdo/txFileManager/issues/27))
 * Added new operations
