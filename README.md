@@ -131,13 +131,14 @@ Notes: A release branch will be created out of the master branch when a release 
 * Created Github workflow to automatically build/test on ubuntu
 * Added FxCop static analysis
 
-## Version 1.5 (released 7/21/2021)
+## Version 1.5.0.1 (released 7/21/2021)
 
 * Bug fix Async code ([Issue #27](https://github.com/chinhdo/txFileManager/issues/27))
 * Added new operations
     * CopyDirectory
     * MoveDirectory
 * [Added Encoding support to WriteAllText, AppendAllText](https://github.com/chinhdo/txFileManager/issues/26)
+* [Nuget package icon](https://github.com/chinhdo/txFileManager/issues/34)
 * Misc refactors/clean-up
 
 Please suggest your features using the [Issues](https://github.com/chinhdo/txFileManager/issues) list.

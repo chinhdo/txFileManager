@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>TxFileManager</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.5.1</Version>
+    <Version>1.5.0.1</Version>
     <title>.NET Transactional File Manager - include disk IO operations in your transactions</title>
     <Authors>chinhdo</Authors>
     <owners>chinhdo</owners>
@@ -22,8 +22,8 @@ See GitHub project for more info: https://github.com/chinhdo/txFileManager</Desc
 - Added Encoding support to WriteAllText, AppendAllText
 - Nuget package icon
 - Misc refactors/clean-up</PackageReleaseNotes>
-    <AssemblyVersion>1.5.1.41</AssemblyVersion>
-    <FileVersion>1.5.1.41</FileVersion>
+    <AssemblyVersion>1.5.0.1</AssemblyVersion>
+    <FileVersion>1.5.0.1</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <Company />
