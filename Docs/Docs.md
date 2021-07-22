@@ -5,7 +5,7 @@ Use TxFileManagerTest package for Nuget testing.
 Create package (in FileManager project)
 
 ```
-dotnet pack --output nupkgs
+dotnet pack -c Release --output nupkgs
 dotnet build -c Release
 ```
 
