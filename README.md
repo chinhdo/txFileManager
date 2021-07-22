@@ -137,7 +137,7 @@ Notes: A release branch will be created out of the master branch when a release 
 * Added new operations
     * CopyDirectory
     * MoveDirectory
-* Added Encoding support to WriteAllText, AppendAllText
+* [Added Encoding support to WriteAllText, AppendAllText](https://github.com/chinhdo/txFileManager/issues/26)
 * Misc refactors/clean-up
 
 [View issues for version 1.5](https://github.com/chinhdo/txFileManager/issues?q=is%3Aissue+project%3Achinhdo%2FtxFileManager%2F1+)
