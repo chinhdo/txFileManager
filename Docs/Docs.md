@@ -1,11 +1,16 @@
 # How to publish to Nuget
 
+Use TxFileManagerTest package for Nuget testing.
+
 Create package (in FileManager project)
+
 ```
 dotnet pack -c Release --output nupkgs
+dotnet build -c Release
 ```
 
-Push package (don't use the file in the project folder - that one is missing a bunch of attrs for some reason)
+Push package
+
 ```
-dotnet nuget push .\bin\release\TxFileManager.1.5.0.nupkg --api-key $key --source https://api.nuget.org/v3/index.json
+dotnet nuget push .\bin\release\TxFileManager.1.5.1.nupkg --api-key $key --source https://api.nuget.org/v3/index.json
 ```
