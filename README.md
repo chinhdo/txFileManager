@@ -63,14 +63,6 @@ using (TransactionScope scope1 = new TransactionScope())
 ```
 
 # Frequently Asked Questions
-## How do I run tests?
-
-In a PowerShell/Command window:
-```
-dotnet test
-```
-
-In Visual Studio, open Test/Text Explorer and choose Run All Tests (or CTRL-R, A)
 
 ## How do I reference this library?
 
