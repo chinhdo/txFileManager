@@ -35,7 +35,7 @@ Support the following file operations in transactions:
 
 If you have any suggestions for enhancements or bug reports please use the Issues list. Better yet, if possible join this project and contribute.
 
-This library is available as a [NuGet](https://www.nuget.org/packages/TxFileManager) package. The current/latest release is 1.4.
+This library is available as a [NuGet](https://www.nuget.org/packages/TxFileManager) package.
 
 This started out as a [blog post](http://www.chinhdo.com/20080825/transactional-file-manager/). It was hosted on [CodePlex](https://archive.codeplex.com/?p=transactionalfilemgr) and migrated to GitHub in 3/2020.
 
@@ -110,11 +110,10 @@ IFileManager fm = new TxFileManager(myTempPath);
 
 Notes: A release branch will be created out of the master branch when a release is made. The master branch will contain the latest features being added/tested for the next release.
 
-# Nuget Releases
+# [Nuget Releases](https://www.nuget.org/packages/TxFileManager/)
 
 ## Version 1.4 (released 3/2020)
 
-* Convert to xUnit tests
 * Add support for custom temp paths to address issues with file/dir operations accross filesystems
 * Fix for resource leak in TxFileManager._txEnlistment
 * Target .NET Standard 2.0
