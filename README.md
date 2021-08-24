@@ -63,7 +63,6 @@ using (TransactionScope scope1 = new TransactionScope())
 ```
 
 # Frequently Asked Questions
-## How do I run tests?
 
 ## How do I reference this library?
 
