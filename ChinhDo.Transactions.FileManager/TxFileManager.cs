@@ -48,7 +48,7 @@ namespace ChinhDo.Transactions
             }
             else
             {
-                File.AppendAllText(path, contents);
+                File.AppendAllText(path, contents, encoding);
             }
         }
 
