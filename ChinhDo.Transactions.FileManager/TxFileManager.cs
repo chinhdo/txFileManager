@@ -212,7 +212,14 @@ namespace ChinhDo.Transactions
 
         public void WriteAllText(string path, string contents)
         {
-            WriteAllText(path, contents, Encoding.Default);
+            if (IsInTransaction())
+            {
+                EnlistOperation(new WriteAllTextOperation(GetTempPath(), path, contents, null));
+            }
+            else
+            {
+                File.WriteAllText(path, contents);
+            }
         }
 
         public void WriteAllText(string path, string contents, Encoding encoding)
@@ -223,7 +230,7 @@ namespace ChinhDo.Transactions
             }
             else
             {
-                File.WriteAllText(path, contents);
+                File.WriteAllText(path, contents, encoding);
             }
         }
 

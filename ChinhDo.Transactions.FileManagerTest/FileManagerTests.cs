@@ -441,6 +441,38 @@ namespace ChinhDo.Transactions.FileManagerTest
             Assert.Equal(contents1, File.ReadAllText(f1));
         }
 
+        [Fact]
+        public void CanWriteAllTextWithEncoding()
+        {
+            string f1 = GetTempPathName();
+            const string contents = "abcdef";
+            File.WriteAllText(f1, "123", Encoding.UTF8);
+
+            using (TransactionScope scope1 = new TransactionScope())
+            {
+                _target.WriteAllText(f1, contents, Encoding.UTF8);
+                scope1.Complete();
+            }
+
+            Assert.Equal(contents, File.ReadAllText(f1));
+        }
+
+        [Fact]
+        public void CanWriteAllTextWithEncodingAndRollback()
+        {
+            string f1 = GetTempPathName();
+            const string contents1 = "123";
+            const string contents2 = "abcdef";
+            File.WriteAllText(f1, contents1, Encoding.UTF8);
+
+            using (TransactionScope scope1 = new TransactionScope())
+            {
+                _target.WriteAllText(f1, contents2, Encoding.UTF8);
+            }
+
+            Assert.Equal(contents1, File.ReadAllText(f1));
+        }
+
         #endregion
 
         #region Transaction Support
